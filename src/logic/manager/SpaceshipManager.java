@@ -4,17 +4,19 @@ import entity.Spaceship;
 import logic.factory.SpaceshipFactory;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class SpaceshipManager {
     private SpaceshipFactory spaceshipFactory;
     private ArrayList<Spaceship> spaceships;
 
-    public SpaceshipManager() {
+    public SpaceshipManager(){
         spaceshipFactory = new SpaceshipFactory();
         spaceships = new ArrayList<>();
 
         // TODO the following lines will be deleted after the demo
         // these lines are added just for the demo
+
         add(1, 0, 230);
         add(2, 0, 230);
     }

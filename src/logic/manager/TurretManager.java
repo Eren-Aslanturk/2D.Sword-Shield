@@ -16,11 +16,15 @@ public class TurretManager {
     public TurretManager() {
         turrets = new ArrayList<>();
         turretFactory = new TurretFactory();
+
+        // TODO the following lines will be deleted after the demo
+        // these lines are added just for the demo
+        add(0,305,155);
     }
 
     // adds a turret of the given type at the given location
     public void add(int type, int x, int y) {
-        // TODO will be implemented after iteration I
+        turrets.add(turretFactory.create(type,x,y));
     }
 
     // returns fired projectiles on this iteration

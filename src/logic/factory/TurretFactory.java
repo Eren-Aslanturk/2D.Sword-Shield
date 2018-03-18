@@ -1,7 +1,10 @@
 package logic.factory;
 
 import entity.Turret;
+import util.Boundary;
 import util.FileManager;
+
+import java.awt.image.BufferedImage;
 
 public class TurretFactory {
 
@@ -18,8 +21,8 @@ public class TurretFactory {
 
     public static final int[] COSTS = {100, 200, 300, 400};
     private static final int[] ATTACK_SPEEDS = {1, 2, 3, 4};
-    private static final int[] WIDTHS = {50, 75, 85, 80};
-    private static final int[] HEIGHTS = {50, 75, 85, 90};
+    private static final int[] WIDTHS = {40, 40, 85, 80};
+    private static final int[] HEIGHTS = {40, 40, 85, 90};
 
     // File Manager
     FileManager fileManager;
@@ -30,7 +33,14 @@ public class TurretFactory {
 
     public Turret create(int type, int x, int y) {
         Turret turret = new Turret();
-        // TODO will be implemented
+        BufferedImage image = fileManager.getImage(IMAGEPATHS[type]);
+        image = FileManager.getResizedImage(image,WIDTHS[type],HEIGHTS[type]);
+
+        //initialize properties
+        turret.setImage(image);
+        turret.setBoundary(new Boundary(x,y,WIDTHS[type],HEIGHTS[type]));
+        turret.setAttackSpeed(ATTACK_SPEEDS[type]);
+
         return turret;
     }
 }

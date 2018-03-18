@@ -16,9 +16,13 @@ public class FactoryManager {
     public FactoryManager() {
         factories = new ArrayList<>();
         factoryFactory = new FactoryFactory();
+
+        // TODO the following lines will be deleted after the demo
+        // these lines are added just for the demo
+        add(1,55,105);
     }
     public void add(int type, int x, int y) {
-        // TODO will be implemented after iteration I
+        factories.add(factoryFactory.create(type,x,y));
     }
 
     public ArrayList<GameObject> produceSpaceships() {

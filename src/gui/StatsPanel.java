@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Date;
+import java.util.Timer;
 
 public class StatsPanel extends JPanel {
     public static int WIDTH = 400;
@@ -34,10 +36,12 @@ public class StatsPanel extends JPanel {
         attackerGold.setBounds(new Rectangle(80, 7, 40, 40));
         attackerGold.setFont(new Font("Helvetica", Font.PLAIN, 19));
 
-        timeLeft = new JLabel("00:00");
+
+        timeLeft = new JLabel("00:00" );
         timeLeft.setForeground(Color.CYAN);
         timeLeft.setBounds(new Rectangle(175, 7, 60, 40));
         timeLeft.setFont(new Font("Helvetica", Font.PLAIN, 19));
+
 
         defenderGold = new JLabel("" + 800);
         defenderGold.setForeground(Color.CYAN);
@@ -48,6 +52,7 @@ public class StatsPanel extends JPanel {
         defenderScore.setForeground(Color.CYAN);
         defenderScore.setBounds(new Rectangle(345, 7, 40, 40));
         defenderScore.setFont(new Font("Helvetica", Font.PLAIN, 19));
+
 
         add(attackerScore);
         add(defenderScore);
