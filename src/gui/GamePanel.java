@@ -50,6 +50,10 @@ public class GamePanel extends JPanel {
         setPreferredSize(new Dimension(800, 600));
     }
 
+    public void startTimer() {
+        actionPanel.startTimer();
+    }
+
     public static GamePanel getInstance() {
         if (instance == null)
             instance = new GamePanel();

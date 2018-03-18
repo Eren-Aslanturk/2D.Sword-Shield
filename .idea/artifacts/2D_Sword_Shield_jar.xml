@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="2D.Sword-Shield:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/2D_Sword_Shield_jar</output-path>
+    <root id="archive" name="2D.Sword-Shield.jar">
+      <element id="module-output" name="2D.Sword-Shield" />
+    </root>
+  </artifact>
+</component>

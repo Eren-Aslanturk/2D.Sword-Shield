@@ -63,6 +63,7 @@ public class GUIManager {
     public void showGamePanel() {
         frame.getContentPane().removeAll();
         frame.getContentPane().add(gamePanel);
+        gamePanel.startTimer();
         frame.pack();
         frame.repaint();
     }

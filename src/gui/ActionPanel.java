@@ -40,12 +40,14 @@ public class ActionPanel extends JPanel {
             gameManager.update();
             repaint();
         });
-        timer.start();
 
         setPreferredSize(new Dimension(500, 600));
         // addMouseListener(new ActionPanelMouseListener());
     }
 
+    public void startTimer() {
+        timer.start();
+    }
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         gameManager.render(g);
