@@ -41,6 +41,7 @@ public class ProjectileManager {
         projectileFactory.setSpaceships(spaceships);
     }
 
+
     public void render(Graphics g) {
         for (Projectile projectile : projectiles)
             g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY(), null);
