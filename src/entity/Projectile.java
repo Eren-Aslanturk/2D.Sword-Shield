@@ -8,7 +8,8 @@ public class Projectile extends GameObject{
     private double speed;
     private double armorpen;
     private double damage;
-    private Boundary target;
+    private int  targetX;
+    private int  targetY;
 
     public Projectile() {
         super();
@@ -46,11 +47,19 @@ public class Projectile extends GameObject{
         this.damage = damage;
     }
 
-    public Boundary getTarget() {
-        return target;
+    public int getTargetX() {
+        return targetX;
     }
 
-    public void setTarget(Boundary target) {
-        this.target = target;
+    public int getTargetY() {
+        return targetY;
+    }
+
+    public void setTargetX(int targetX) {
+        this.targetX = targetX;
+    }
+
+    public void setTargetY(int targetY) {
+        this.targetY = targetY;
     }
 }

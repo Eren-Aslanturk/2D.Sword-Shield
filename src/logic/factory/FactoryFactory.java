@@ -19,7 +19,7 @@ public class FactoryFactory {
                                                  "Factory Number III",
                                                  "Factory Number IV"};
     public static final int[] COSTS = {100, 200, 300, 400};
-    private static final int[] PRODUCTION_RATES = {1, 2, 3, 4};
+    private static final int[] PRODUCTION_RATES = {1, 40, 3, 4};
     private static final int[] WIDTHS = {50, 40, 50, 25};
     private static final int[] HEIGHTS = {50, 40, 45, 50};
 
@@ -31,7 +31,7 @@ public class FactoryFactory {
     }
 
     public Factory create(int type, int x, int y) {
-        Factory factory = new Factory();
+        Factory factory = new Factory( type );
         BufferedImage image = fileManager.getImage(IMAGEPATHS[type]);
         image = FileManager.getResizedImage(image,WIDTHS[type],HEIGHTS[type]);
 

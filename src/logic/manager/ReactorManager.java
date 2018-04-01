@@ -16,13 +16,19 @@ public class ReactorManager {
     }
 
     public void add(int type, int x, int y) {
-        // TODO will be implemented after iteration I
+        reactors.add(reactorFactory.create(x,y));
     }
 
     // returns the total gold collected from reactors at this iteration
     public int gatherGold() {
-        // TODO will be implemented after iteration I
-        return 4;
+        int gold = 0;
+        for(int i = 0; i < reactors.size() ; i++ ) {
+            int j = reactors.get(i).getIncomeRate();
+            for(; j > 0 ; j-- ) {
+                gold = gold + reactors.get(i).getIncome();
+            }
+        }
+        return gold;
     }
 
     public void render(Graphics g) {

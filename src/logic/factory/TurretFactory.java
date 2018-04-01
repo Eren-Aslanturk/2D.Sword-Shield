@@ -20,7 +20,7 @@ public class TurretFactory {
                                                  "Turret Number IV"};
 
     public static final int[] COSTS = {100, 200, 300, 400};
-    private static final int[] ATTACK_SPEEDS = {1, 2, 3, 4};
+    private static final int[] ATTACK_SPEEDS = {10, 2, 3, 4};
     private static final int[] WIDTHS = {40, 40, 85, 80};
     private static final int[] HEIGHTS = {40, 40, 85, 90};
 
@@ -32,7 +32,7 @@ public class TurretFactory {
     }
 
     public Turret create(int type, int x, int y) {
-        Turret turret = new Turret();
+        Turret turret = new Turret(type);
         BufferedImage image = fileManager.getImage(IMAGEPATHS[type]);
         image = FileManager.getResizedImage(image,WIDTHS[type],HEIGHTS[type]);
 

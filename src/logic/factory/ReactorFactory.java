@@ -1,7 +1,10 @@
 package logic.factory;
 
 import entity.Reactor;
+import util.Boundary;
 import util.FileManager;
+
+import java.awt.image.BufferedImage;
 
 public class ReactorFactory {
 
@@ -24,7 +27,16 @@ public class ReactorFactory {
 
     public Reactor create(int x, int y) {
         Reactor reactor = new Reactor();
-        // TODO will be implemented
+
+        BufferedImage image = fileManager.getImage(IMAGEPATH);
+        image = FileManager.getResizedImage(image,WIDTH,HEIGHT);
+
+        reactor.setBoundary(new Boundary(x,y,WIDTH,HEIGHT));
+        reactor.setBoundary(new Boundary(x,y,WIDTH,HEIGHT));
+        reactor.setX(x);
+        reactor.setY(y);
+        reactor.setIncome(INCOME);
+        reactor.setIncomeRate(INCOME_RATE);
         return reactor;
     }
 

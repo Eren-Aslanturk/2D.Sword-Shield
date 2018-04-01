@@ -1,11 +1,13 @@
 package logic;
 
+import entity.Spaceship;
 import gui.GamePanel;
 import logic.manager.TileManager;
 import logic.manager.*;
 import util.User;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GameManager {
     private static GameManager instance;
@@ -22,6 +24,7 @@ public class GameManager {
     private ProjectileManager projectileManager;
     private ReactorManager reactorManager;
 
+    private ArrayList<Spaceship> spaceships;
     private TileManager tileManager;
 
     private GameManager() {
@@ -51,6 +54,8 @@ public class GameManager {
         projectileManager = new ProjectileManager();
         reactorManager = new ReactorManager();
         tileManager = new TileManager();
+        factoryManager.setSpaceshipFactory(spaceshipManager.getSpaceshipFactory());
+        turretManager.setProjectileFactory(projectileManager.getProjectileFactory());
     }
 
     /*
@@ -71,7 +76,24 @@ public class GameManager {
 
     // TODO will be implemented
     public void update() {
-        spaceshipManager.moveAll();
+
+        spaceshipManager.addSpaceships(factoryManager.produceSpaceships());
+        factoryManager.increase();
+        turretManager.increase();
+        spaceships = spaceshipManager.getSpaceships();
+        if( spaceships.size() != 0) {
+            projectileManager.setSpaceships(spaceships);
+
+            projectileManager.addProjectiles(turretManager.fireProjectiles());
+
+
+            projectileManager.moveAll();
+            projectileManager.cleanDeads();
+            attacker.setGold(reactorManager.gatherGold() + attacker.getGold());
+
+
+            spaceshipManager.moveAll();
+        }
     }
 
     public void render(Graphics g) {
