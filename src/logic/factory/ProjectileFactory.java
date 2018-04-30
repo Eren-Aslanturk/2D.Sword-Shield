@@ -5,6 +5,8 @@ import entity.Spaceship;
 import util.Boundary;
 import util.FileManager;
 
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -36,7 +38,7 @@ public class ProjectileFactory {
         BufferedImage image = fileManager.getImage(IMAGEPATHS[type]);
         image = fileManager.getResizedImage(image, WIDTHS[type], HEIGHTS[type]);
         // initialize properties
-        projectile.setImage(image);
+        //projectile.setImage(image);
         projectile.setDamage(DAMAGES[type]);
         projectile.setArmorpen(ARMORPENS[type]);
         projectile.setSpeed(SPEEDS[type]);
@@ -49,8 +51,30 @@ public class ProjectileFactory {
         int c = (int) (Math.sqrt(a*a + b*b) / SPEEDS[type]);
         if(spaceship.getX() < x )
             a = -a;
-        projectile.setTargetX(a/c);
+
+        float angle;
+
+        if(x > spaceship.getX()) {
+            angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - y, spaceship.getX() - x));
+        }
+        else {
+            angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - y, -spaceship.getX() + x));
+        }
+        if(angle < 0){
+            angle += 360;
+        }
+
+
+        projectile.setTargetX(a/c + 2);
         projectile.setTargetY(b/c);
+
+        double rotationRequired =  Math.toRadians(angle);
+
+        int locationX = image.getWidth() / 2;
+        int locationY = image.getHeight() / 2;
+        AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        projectile.setImage(op.filter(image,null));
 
         return projectile;
     }
@@ -59,10 +83,13 @@ public class ProjectileFactory {
     }
 
     private Spaceship closestSpaceship( int x ){
-        Spaceship spaceship = null;
+
+        Spaceship spaceship = spaceships.get(0);
         Spaceship tmp;
+        Spaceship tmp2;
+        System.out.println(spaceships.size());
         for(int i = 0; i < spaceships.size() - 1 ; i++){
-            spaceship = spaceships.get(i);
+            //spaceship = spaceships.get(i);
             tmp = spaceships.get(i + 1);
             if(spaceship.getX() < x && tmp.getX() < x ){
                 if(spaceship.getX() < tmp.getX()){ spaceship = tmp;}
@@ -72,7 +99,7 @@ public class ProjectileFactory {
                     spaceship = tmp;
                 }
             }
-            else if(spaceship.getX() > x && tmp.getX() < x){
+            else if(spaceship.getX() < x && tmp.getX() > x){
                 if(x - spaceship.getX() > tmp.getX() - x){
                     spaceship = tmp;
                 }
@@ -81,8 +108,8 @@ public class ProjectileFactory {
                 if(spaceship.getX() > tmp.getX()){ spaceship = tmp;}
             }
         }
-        if( spaceships.size() == 1)
-            spaceship = spaceships.get(0);
+
+        System.out.println(spaceship.getX());
         return spaceship;
     }
 }

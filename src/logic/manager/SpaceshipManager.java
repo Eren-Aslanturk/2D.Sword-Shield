@@ -2,9 +2,9 @@ package logic.manager;
 
 import entity.Spaceship;
 import logic.factory.SpaceshipFactory;
+
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class SpaceshipManager {
     private SpaceshipFactory spaceshipFactory;
@@ -17,7 +17,7 @@ public class SpaceshipManager {
         // TODO the following lines will be deleted after the demo
         // these lines are added just for the demo
 
-        add(1, 0, 230);
+        //add(1, 0, 230);
        // add(2, 0, 230);
     }
 

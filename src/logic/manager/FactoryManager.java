@@ -1,9 +1,7 @@
 package logic.manager;
 
 import entity.Factory;
-import entity.GameObject;
 import entity.Spaceship;
-import logic.GameManager;
 import logic.factory.FactoryFactory;
 import logic.factory.SpaceshipFactory;
 
@@ -34,7 +32,6 @@ public class FactoryManager {
         for(int i = 0; i < factories.size() ; i++ ) {
             if(j%factories.get(i).getProductionRate()== 0) {
                 spaceships.add(spaceshipFactory.create(factories.get(i).getType(), 0, 230));
-                j = 0;
             }
         }
         return spaceships;

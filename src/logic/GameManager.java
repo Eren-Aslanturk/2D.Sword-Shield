@@ -1,8 +1,6 @@
 package logic;
 
 import entity.Spaceship;
-import gui.GamePanel;
-import logic.manager.TileManager;
 import logic.manager.*;
 import util.User;
 
