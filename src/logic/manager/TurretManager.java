@@ -24,7 +24,10 @@ public class TurretManager {
 
         // TODO the following lines will be deleted after the demo
         // these lines are added just for the demo
-        add(3,285,135);
+        add(1,310,155);
+        add(2,350,155);
+        add(0,410,155);
+        add(3,435,135);
     }
 
     // adds a turret of the given type at the given location
@@ -42,32 +45,33 @@ public class TurretManager {
             if(j%turrets.get(i).getAttackSpeed() == 0) {
                 //x and y will be decided later
                 Spaceship spaceship = closestSpaceship(turrets.get(i).getX());
-                float angle;
+                double angle;
 
-                if(turrets.get(i).getX() > spaceship.getX()) {
-                    angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - turrets.get(i).getY(), spaceship.getX() - turrets.get(i).getX()));
-                }
-                else {
-                    angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - turrets.get(i).getY(), -spaceship.getX() + turrets.get(i).getX()));
-                }
+
+                    angle =  Math.toDegrees(Math.atan2(spaceship.getY() - turrets.get(i).getY()+ TurretFactory.HEIGHTS[turrets.get(i).getType()]/2,
+                            spaceship.getX() - turrets.get(i).getX() + TurretFactory.WIDTHS[turrets.get(i).getType()]/2));
+
+
+                    //angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - turrets.get(i).getY(), -spaceship.getX() + turrets.get(i).getX()));
+
                 if(angle < 0){
                     angle += 360;
                 }
-
+                System.out.println(angle + "= Turret ");
                 double rotationRequired =  Math.toRadians(angle);
-
-                projectiles.add(projectileFactory.create(turrets.get(i).getType(),turrets.get(i).getX()- ProjectileFactory.WIDTHS[turrets.get(i).getType()/2],
-                        turrets.get(i).getY()- ProjectileFactory.HEIGHTS[turrets.get(i).getType()]/2));
+                Projectile projectile = projectileFactory.create(turrets.get(i).getType(),turrets.get(i).getX()- ProjectileFactory.WIDTHS[turrets.get(i).getType()/2],
+                        turrets.get(i).getY()- ProjectileFactory.HEIGHTS[turrets.get(i).getType()]/2);
+                projectiles.add(projectile);
 
                 Turret turret = turrets.get(i);
                 BufferedImage reloadedImage = FileManager.getInstance().getImage(TurretFactory.IMAGEPATHS[turret.getType()]);
-
+                System.out.println( projectile.getAngle() + "= Projectile ");
                 turret.setImage(FileManager.getResizedImage(reloadedImage, TurretFactory.WIDTHS[turret.getType()],TurretFactory.HEIGHTS[turret.getType()]));
 
 
                 //j = 0;
 
-                turrets.get(i).setImage(FileManager.rotate(turrets.get(i).getImage(),rotationRequired));
+                turrets.get(i).setImage(FileManager.rotate(turrets.get(i).getImage(),Math.toRadians(projectile.getAngle())));
 
             }
         }
@@ -85,7 +89,6 @@ public class TurretManager {
         this.projectileFactory = projectileFactory;
     }
     public void increase(){
-        System.out.println(j);
         j++;
     }
 
@@ -93,7 +96,7 @@ public class TurretManager {
 
         Spaceship spaceship = spaceships.get(0);
         Spaceship tmp;
-        System.out.println(spaceships.size());
+
         for(int i = 0; i < spaceships.size() - 1 ; i++){
             //spaceship = spaceships.get(i);
             tmp = spaceships.get(i + 1);
@@ -115,7 +118,7 @@ public class TurretManager {
             }
         }
 
-        System.out.println(spaceship.getX());
+
         return spaceship;
     }
     public void setSpaceships(ArrayList<Spaceship> spaceships){

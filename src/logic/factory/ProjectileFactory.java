@@ -20,8 +20,8 @@ public class ProjectileFactory {
     private static final double[] ARMORPENS = {2.3, 4.5, 5.6, 6.7};
     private static final double[] DAMAGES = {3.4, 5.4, 3.3, 2.2};
     private static final double[] RANGES = {45, 44, 23.25, 45.5};
-    public static final int[] WIDTHS = {40, 46, 35, 103};
-    public static final int[] HEIGHTS = {40, 45, 35, 105};
+    public static final int[] WIDTHS = {40, 40, 40, 40};
+    public static final int[] HEIGHTS = {40, 40, 40, 40};
 
     // FileManager
     FileManager fileManager;
@@ -36,7 +36,7 @@ public class ProjectileFactory {
         BufferedImage image = fileManager.getImage(IMAGEPATHS[type]);
         image = fileManager.getResizedImage(image, WIDTHS[type], HEIGHTS[type]);
         // initialize properties
-        //projectile.setImage(image);
+        projectile.setImage(image);
         projectile.setDamage(DAMAGES[type]);
         projectile.setArmorpen(ARMORPENS[type]);
         projectile.setSpeed(SPEEDS[type]);
@@ -52,22 +52,20 @@ public class ProjectileFactory {
 
         float angle;
 
-        if(x > spaceship.getX()) {
-            angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - y, spaceship.getX() - x));
-        }
-        else {
-            angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - y, -spaceship.getX() + x));
-        }
-        if(angle < 0){
-            angle += 360;
-        }
+
+            angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - y , spaceship.getX() - x ));
 
 
-        projectile.setTargetX(a/c + 2);
+            //angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - y, -spaceship.getX() + x));
+
+
+
+
+        projectile.setTargetX(a/c);
         projectile.setTargetY(b/c);
 
         double rotationRequired =  Math.toRadians(angle);
-
+        projectile.setAngle(angle);
 
         projectile.setImage(FileManager.rotate(image,rotationRequired));
 
@@ -81,7 +79,7 @@ public class ProjectileFactory {
 
         Spaceship spaceship = spaceships.get(0);
         Spaceship tmp;
-        System.out.println(spaceships.size());
+
         for(int i = 0; i < spaceships.size() - 1 ; i++){
             //spaceship = spaceships.get(i);
             tmp = spaceships.get(i + 1);

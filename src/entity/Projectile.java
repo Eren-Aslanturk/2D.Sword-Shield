@@ -1,9 +1,8 @@
 package entity;
 
-import util.Boundary;
-
 public class Projectile extends GameObject{
 
+    private double angle;
     private double range;
     private double speed;
     private double armorpen;
@@ -61,5 +60,12 @@ public class Projectile extends GameObject{
 
     public void setTargetY(int targetY) {
         this.targetY = targetY;
+    }
+
+    public  void setAngle(double angle){
+        this.angle = angle;
+    }
+    public double getAngle(){
+        return angle;
     }
 }
