@@ -8,7 +8,6 @@ import logic.factory.TurretFactory;
 import util.FileManager;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -25,12 +24,12 @@ public class TurretManager {
 
         // TODO the following lines will be deleted after the demo
         // these lines are added just for the demo
-        add(3,305,155);
+        add(3,285,135);
     }
 
     // adds a turret of the given type at the given location
     public void add(int type, int x, int y) {
-        turrets.add(turretFactory.create(type,x,y));
+        turrets.add(turretFactory.create(type,x+TurretFactory.WIDTHS[type]/2,y+TurretFactory.HEIGHTS[type]/2));
     }
 
     // returns fired projectiles on this iteration
@@ -55,25 +54,16 @@ public class TurretManager {
                     angle += 360;
                 }
 
-               double rotationRequired =  Math.toRadians(angle);
-                //double tmp = -turrets.get(i).getAngle()+rotationRequired;
-               // turrets.get(i).setAngle(rotationRequired);
+                double rotationRequired =  Math.toRadians(angle);
 
+                projectiles.add(projectileFactory.create(turrets.get(i).getType(),turrets.get(i).getX()- ProjectileFactory.WIDTHS[turrets.get(i).getType()/2],
+                        turrets.get(i).getY()- ProjectileFactory.HEIGHTS[turrets.get(i).getType()]/2));
 
-
-                int locationX = turrets.get(i).getImage().getWidth() / 2;
-                int locationY = turrets.get(i).getImage().getHeight() / 2;
-                projectiles.add(projectileFactory.create(turrets.get(i).getType(),turrets.get(i).getX(),turrets.get(i).getY()));
-                AffineTransform tx = new AffineTransform();
-
-                //AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
-                //tx.rotate(tmp,locationX,locationY);
-                //AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
                 Turret turret = turrets.get(i);
                 BufferedImage reloadedImage = FileManager.getInstance().getImage(TurretFactory.IMAGEPATHS[turret.getType()]);
 
                 turret.setImage(FileManager.getResizedImage(reloadedImage, TurretFactory.WIDTHS[turret.getType()],TurretFactory.HEIGHTS[turret.getType()]));
-                //turrets.get(i).setImage(op.filter(turrets.get(i).getImage(),null));
+
 
                 //j = 0;
 
@@ -87,7 +77,7 @@ public class TurretManager {
 
     public void render(Graphics g) {
         for (Turret turret: turrets) {
-            g.drawImage(turret.getImage(), turret.getX(), turret.getY(), null);
+            g.drawImage(turret.getImage(), turret.getX()-(turret.getImage().getWidth()/2), turret.getY()-(turret.getImage().getHeight()/2), null);
         }
     }
 

@@ -5,8 +5,6 @@ import entity.Spaceship;
 import util.Boundary;
 import util.FileManager;
 
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -22,8 +20,8 @@ public class ProjectileFactory {
     private static final double[] ARMORPENS = {2.3, 4.5, 5.6, 6.7};
     private static final double[] DAMAGES = {3.4, 5.4, 3.3, 2.2};
     private static final double[] RANGES = {45, 44, 23.25, 45.5};
-    private static final int[] WIDTHS = {40, 46, 35, 103};
-    private static final int[] HEIGHTS = {40, 45, 35, 105};
+    public static final int[] WIDTHS = {40, 46, 35, 103};
+    public static final int[] HEIGHTS = {40, 45, 35, 105};
 
     // FileManager
     FileManager fileManager;
@@ -70,11 +68,8 @@ public class ProjectileFactory {
 
         double rotationRequired =  Math.toRadians(angle);
 
-        int locationX = image.getWidth() / 2;
-        int locationY = image.getHeight() / 2;
-        AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
-        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        projectile.setImage(op.filter(image,null));
+
+        projectile.setImage(FileManager.rotate(image,rotationRequired));
 
         return projectile;
     }
@@ -108,7 +103,7 @@ public class ProjectileFactory {
             }
         }
 
-        System.out.println(spaceship.getX());
+
         return spaceship;
     }
 }

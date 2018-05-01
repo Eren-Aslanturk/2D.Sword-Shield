@@ -20,7 +20,7 @@ public class FactoryManager {
 
         // TODO the following lines will be deleted after the demo
         // these lines are added just for the demo
-        add(3,55,105);
+        add(1,55,105);
     }
     public void add(int type, int x, int y) {
         factories.add(factoryFactory.create(type,x,y));
