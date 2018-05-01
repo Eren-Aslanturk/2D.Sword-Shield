@@ -8,11 +8,13 @@ import java.awt.image.BufferedImage;
 
 public class MenuPanel extends JPanel {
 
+    private static MenuPanel instance;
     private BufferedImage backgroundImage;
     private BufferedImage gameLogo;
     private FileManager fileManager;
     private MenuButton playButton;
     private MenuButton loadButton;
+    private MenuButton helpButton;
     private MenuButton creditsButton;
     private MenuButton soundButton;
 
@@ -41,20 +43,33 @@ public class MenuPanel extends JPanel {
             GUIManager.getInstance().showCreditsPanel();
         });
 
-        soundButton = new MenuButton(355, 450,fileManager.getImage("/images/menu/music.png"),
+        helpButton = new MenuButton(355, 450,fileManager.getImage("/images/menu/help.png"),
+                fileManager.getImage("/images/menu/helphover.png"));
+        helpButton.addActionListener(help -> {
+            GUIManager.getInstance().showHelpPanel();
+        });
+
+
+        soundButton = new MenuButton(355, 510,fileManager.getImage("/images/menu/music.png"),
                 fileManager.getImage("/images/menu/musichover.png"));
         soundButton.addActionListener(sound-> {
-
+            // TODO
         });
 
         add(playButton);
         add(loadButton);
         add(creditsButton);
+        add(helpButton);
         add(soundButton);
 
         setPreferredSize(new Dimension(800, 600));
     }
 
+    public static MenuPanel getInstance() {
+        if (instance == null)
+            instance = new MenuPanel();
+        return instance;
+    }
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(backgroundImage, 0, 0, null);

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class LoadPanel extends JPanel {
 
+    private static LoadPanel instance;
     private JList list;
     private JButton selectButton;
     private JButton removeButton;
@@ -24,7 +25,7 @@ public class LoadPanel extends JPanel {
 
 
 
-    public LoadPanel() {
+    private LoadPanel() {
         setLayout(new BorderLayout());
         loadText = new JLabel("Load");
         model = new DefaultListModel();
@@ -60,6 +61,13 @@ public class LoadPanel extends JPanel {
         add(backButton, BorderLayout.SOUTH);
         setPreferredSize(new Dimension(800, 600));
     }
+
+    public static LoadPanel getInstance() {
+        if (instance == null)
+            instance = new LoadPanel();
+        return instance;
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(backgroundImage,0,0, null);

@@ -11,12 +11,13 @@ public class CreditsPanel extends JPanel {
     private static int WIDTH = 800;
     private static int HEIGHT = 600;
 
+    private static CreditsPanel instance;
     private BufferedImage backgroundImage;
     private BufferedImage name1, name2, name3, name4;
     private BufferedImage creditsTitle;
     private MenuButton backButton;
 
-    public CreditsPanel() {
+    private CreditsPanel() {
         backgroundImage = FileManager.getInstance().getImage("/images/menu/menu_bg.gif");
         backButton = new MenuButton(370,500, FileManager.getInstance().getImage("/images/credits/back.png"),
                 FileManager.getInstance().getImage("/images/credits/backhover.png"));
@@ -31,9 +32,15 @@ public class CreditsPanel extends JPanel {
             GUIManager.getInstance().showMenuPanel();
         });
 
-
+        setLayout(new BorderLayout());
         add(backButton, BorderLayout.SOUTH);
         setPreferredSize(new Dimension(800, 600));
+    }
+
+    public static CreditsPanel getInstance() {
+        if (instance == null)
+            instance = new CreditsPanel();
+        return instance;
     }
 
     protected void paintComponent(Graphics g) {
