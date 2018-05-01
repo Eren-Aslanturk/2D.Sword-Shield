@@ -81,7 +81,7 @@ public class GameManager {
         spaceships = spaceshipManager.getSpaceships();
         if( spaceships.size() != 0) {
             projectileManager.setSpaceships(spaceships);
-
+            turretManager.setSpaceships(spaceships);
             projectileManager.addProjectiles(turretManager.fireProjectiles());
 
 
