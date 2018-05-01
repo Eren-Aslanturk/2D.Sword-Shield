@@ -14,14 +14,17 @@ public class GUIManager {
     private LoadPanel loadPanel;
     private CreditsPanel creditsPanel;
     private GamePanel gamePanel;
-
+    private HelpPanel helpPanel;
     // TODO will be implemented after iteration I.
     private int loadGameIndex;
 
     private GUIManager() {
-        menuPanel = new MenuPanel();
-        loadPanel = new LoadPanel();
-        creditsPanel = new CreditsPanel();
+        menuPanel = MenuPanel.getInstance();
+        loadPanel = LoadPanel.getInstance();
+        creditsPanel = CreditsPanel.getInstance();
+        helpPanel = HelpPanel.getInstance();
+
+        // not sure if GamePanel should be singleton
         gamePanel = GamePanel.getInstance();
 
         frame = new JFrame("Sword&Shield: A Space Adventure");
@@ -56,6 +59,13 @@ public class GUIManager {
     public void showCreditsPanel() {
         frame.getContentPane().removeAll();
         frame.getContentPane().add(creditsPanel);
+        frame.pack();
+        frame.repaint();
+    }
+
+    public void showHelpPanel() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(helpPanel);
         frame.pack();
         frame.repaint();
     }
