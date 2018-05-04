@@ -20,14 +20,13 @@ public class ProjectileFactory {
     private static final double[] ARMORPENS = {2.3, 4.5, 5.6, 6.7};
     private static final double[] DAMAGES = {34, 54, 126, 110};
     private static final double[] RANGES = {145, 144, 123.25, 145.5};
-    public static final int[] WIDTHS = {40, 46, 35, 103};
-    public static final int[] HEIGHTS = {40, 45, 35, 105};
+    public static final int[] WIDTHS = {40, 40, 40, 80};
+    public static final int[] HEIGHTS = {40, 40, 40, 80};
 
     // FileManager
     FileManager fileManager;
 
-    public ProjectileFactory() {
-        fileManager = FileManager.getInstance();
+    public ProjectileFactory() { fileManager = FileManager.getInstance();
     }
 
     public Projectile create(int type, int x, int y) {
@@ -36,7 +35,7 @@ public class ProjectileFactory {
         BufferedImage image = fileManager.getImage(IMAGEPATHS[type]);
         image = fileManager.getResizedImage(image, WIDTHS[type], HEIGHTS[type]);
         // initialize properties
-        //projectile.setImage(image);
+       // projectile.setImage(image);
         projectile.setDamage(DAMAGES[type]);
         projectile.setArmorpen(ARMORPENS[type]);
         projectile.setSpeed(SPEEDS[type]);
@@ -68,9 +67,8 @@ public class ProjectileFactory {
 
         double rotationRequired =  Math.toRadians(angle);
 
-
+        projectile.setAngle(rotationRequired);
         projectile.setImage(FileManager.rotate(image,rotationRequired));
-
         return projectile;
     }
     public void setSpaceships(ArrayList<Spaceship> spaceships){

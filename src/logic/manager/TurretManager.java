@@ -25,8 +25,8 @@ public class TurretManager {
         // TODO the following lines will be deleted after the demo
         // these lines are added just for the demo
         add(1,310,155);
-        add(2,350,155);
-        add(0,410,155);
+        //add(2,350,155);
+        //add(0,410,155);
         add(3,435,135);
     }
 
@@ -42,33 +42,21 @@ public class TurretManager {
 
         for(int i = 0; i < turrets.size() ; i++){
             if(j%turrets.get(i).getAttackSpeed() == 0) {
-                //x and y will be decided later
-                Spaceship spaceship = closestSpaceship(turrets.get(i).getX());
-                double angle;
+                Turret turret = turrets.get(i);
+                int turrety = turret.getY()-(turret.getImage().getHeight()/2);
+                Projectile projectile = projectileFactory.create(turret.getType(),turret.getX()- turret.getImage().getWidth()/2,
+                        turrety );
 
-
-                    angle =  Math.toDegrees(Math.atan2(spaceship.getY() - turrets.get(i).getY()+ TurretFactory.HEIGHTS[turrets.get(i).getType()]/2,
-                            spaceship.getX() - turrets.get(i).getX() + TurretFactory.WIDTHS[turrets.get(i).getType()]/2));
-
-
-                    //angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - turrets.get(i).getY(), -spaceship.getX() + turrets.get(i).getX()));
-
-                if(angle < 0){
-                    angle += 360;
-                }
-                double rotationRequired =  Math.toRadians(angle);
-                Projectile projectile = projectileFactory.create(turrets.get(i).getType(),turrets.get(i).getX()- ProjectileFactory.WIDTHS[turrets.get(i).getType()/2],
-                        turrets.get(i).getY()- ProjectileFactory.HEIGHTS[turrets.get(i).getType()]/2);
                 projectiles.add(projectile);
 
-                Turret turret = turrets.get(i);
+
                 BufferedImage reloadedImage = FileManager.getInstance().getImage(TurretFactory.IMAGEPATHS[turret.getType()]);
                 turret.setImage(FileManager.getResizedImage(reloadedImage, TurretFactory.WIDTHS[turret.getType()],TurretFactory.HEIGHTS[turret.getType()]));
 
 
                 //j = 0;
 
-                turrets.get(i).setImage(FileManager.rotate(turrets.get(i).getImage(),Math.toRadians(projectile.getAngle())));
+                turrets.get(i).setImage(FileManager.rotate(turrets.get(i).getImage(),projectile.getAngle()));
 
             }
         }

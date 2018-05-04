@@ -20,7 +20,7 @@ public class TurretFactory {
                                                  "Turret Number IV"};
 
     public static final int[] COSTS = {100, 200, 300, 400};
-    private static final int[] ATTACK_SPEEDS = {10, 5, 3, 4};
+    private static final int[] ATTACK_SPEEDS = {10, 12, 20, 15};
     public static final int[] WIDTHS = {40, 40, 40, 80};
     public static final int[] HEIGHTS = {40, 40, 40, 80};
 

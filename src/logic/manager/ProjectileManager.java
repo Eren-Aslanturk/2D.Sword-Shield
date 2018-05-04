@@ -67,7 +67,7 @@ public class ProjectileManager {
 
     public void render(Graphics g) {
         for (Projectile projectile : projectiles)
-            g.drawImage(projectile.getImage(), projectile.getX() + projectile.getImage().getWidth()/2, projectile.getY()   , null);
+            g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY()   , null);
     }
 
     public ProjectileFactory getProjectileFactory() {
