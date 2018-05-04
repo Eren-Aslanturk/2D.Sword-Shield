@@ -13,6 +13,15 @@ public class ReactorFactory {
     public static final String NAME = "Reactor";
     public static final int COST = 5;
 
+    public static final String DESCRIPTIONS =
+            "<html><pre>" +
+                    "<br/><header><h1>Reactor</h1></header>" +
+                    "<br/>Reactor can be bought by the attacker to earn money throughout the stage.It is in the shape of a" +
+                    "<br/>nuclear reactor for the game’s concept. It will earn the attacker a certain amount of coins throughout the"+
+                    "<br/>game at a predetermined rate that can be upgraded." +
+            "</pre></html>";
+
+
     private static final int INCOME_RATE = 5;
     private static final int INCOME = 5;
     private static final int WIDTH = 55;
@@ -42,5 +51,8 @@ public class ReactorFactory {
 
     public int getCost() {
         return COST;
+    }
+    public static int getIncomeRate() {
+        return INCOME_RATE;
     }
 }

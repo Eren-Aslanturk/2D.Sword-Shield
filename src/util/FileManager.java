@@ -1,11 +1,17 @@
 package util;
 
+import gui.GUIManager;
 import logic.GameManager;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class FileManager {
@@ -26,12 +32,13 @@ public class FileManager {
         return savedGames;
     }
 
-    // TODO will be implemented after iteration I
-    public void removeSavedGame(int index) {
-
+    //remove save file of a game
+    public void removeSavedGame(int index) throws IOException {
+        Files.deleteIfExists(Paths.get("savedata" + index + ".txt"));
     }
 
     // TODO will be implemented after iteration I
+    //load the game from a txt file
     public GameManager loadGame(int loadGameIndex) {
         GameManager gameManager = GameManager.getInstance();
 
@@ -39,8 +46,34 @@ public class FileManager {
     }
 
     // TODO will be implemented after iteration I
-    public void saveGame(GameManager gameManager) {
+    //save the game into a serialized file
+    private static int savecount = 0;
+    public void saveGame()  {
+        //TODO serializable exception
 
+        //GUIManager.getInstance().showGamePanel();
+        GUIManager saveInstance = GUIManager.getInstance();
+
+        FileOutputStream fileOut = null;
+        try {
+            fileOut = new FileOutputStream("savedata" + (savecount++) + ".ser");
+
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+
+            //out.writeObject(saveInstance);    // not serializable exception
+
+            out.close();
+
+            fileOut.close();
+
+        } catch (NotSerializableException e) {
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+        //new PrintWriter("savedata" + (savecount++) + ".txt");
     }
 
     public BufferedImage getImage(String imagepath) {

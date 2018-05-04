@@ -14,6 +14,34 @@ public class SpaceshipFactory {
                                                 "/images/spaceship/spaceship3.png",
                                                 "/images/spaceship/spaceship4.png"};
 
+    public static final String[] DESCRIPTIONS = {
+            "<html><pre>" +
+                    "<br/><header><h1>Swedish Spaceship</h1></header>" +
+                    "<br/>These ships are really fast things which will divide in three when first one is<br/>destroyed" +
+                    "<br/>Spawned units are armorless and  have low health, but also very fast" +
+                    "<br/>When the first one is destroyed it will spawn three more" +
+                    "</pre></html>",
+
+            "<html><pre>" +
+                    "<br/><header><h1>Muscular Spaceship</h1></header>" +
+                    "<br/>These are heavy and powerful units" +
+                    "<br/>Units will be moderate in speed but and tough in heavy armor and health." +
+                    "</pre></html>",
+
+            "<html><pre>" +
+                    "<br/><header><h1>Athletic Spaceship</h1></header>" +
+                    "<br/>These units are fast but have light armor and average health" +
+                    "</pre></html>" ,
+
+            "<html><pre>" +
+                    "<br/><header><h1>Tough Tough</header></h1>" +
+                    "<br/>These ships are with heavy armor and heavy health which can go at average speed." +
+                    "</pre></html>"
+
+
+
+    };
+
     private static final int[] SPEEDS = {5, 1, 3, 8};
     private static final double[] ARMORS = {3.3, 4.5, 2.5, 1.9};
     private static final double[] HPS = {200, 323, 234, 456};
@@ -41,5 +69,18 @@ public class SpaceshipFactory {
         spaceship.setSpeed(SPEEDS[type]);
         spaceship.setReward(REWARDS[type]);
         return spaceship;
+    }
+
+    public static int speed(int type) {
+        return SPEEDS[type];
+    }
+    public static double armor(int type) {
+        return ARMORS[type];
+    }
+    public static double hp(int type) {
+        return HPS[type];
+    }
+    public static int reward(int type) {
+        return REWARDS[type];
     }
 }

@@ -1,14 +1,17 @@
 package logic;
 
 import entity.Spaceship;
+import entity.Tile;
 import gui.StatsPanel;
 import logic.manager.*;
 import util.User;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.io.Serializable;
+import gui.UnitCardPanel;
 
-public class GameManager {
+public class GameManager extends UnitCardPanel{
     private static GameManager instance;
 
     private static final int MAX_TURNS = 3;
@@ -67,8 +70,45 @@ public class GameManager {
     * right now all tiles on the left side belong to the attacker
     * whereas the tiles on the right side belong to the defender
     */
-    public void buyTile(Point point) {
+    public Tile buyTile(Point point) {
+        //tile to buy
+        Tile boughtTile = null;
 
+        //if attacker's turn
+        if(turnCount%2==1) {
+
+            //get the bought tile and update gold
+            boughtTile = tileManager.clickedTile((int)point.getX(),(int)point.getY());
+
+            //check if gold is enough
+            if(attacker.getGold()<boughtTile.getCost()) {
+                System.out.println("insufficient funds");
+                return null;
+            }
+
+            //update gold
+            attacker.setGold(attacker.getGold()-boughtTile.getCost());
+
+        }
+
+        //if defender's turn
+        else if(turnCount%2==0) {
+
+            boughtTile = tileManager.clickedTile((int)point.getX(),(int)point.getY());
+
+            //check if gold is enough
+            if(defender.getGold()<boughtTile.getCost()) {
+                System.out.println("insufficient funds");
+                return null;
+            }
+
+            //update gold
+            defender.setGold(defender.getGold()-boughtTile.getCost());
+
+        }
+
+        //return the bought tile
+        return boughtTile;
     }
 
 
@@ -76,7 +116,50 @@ public class GameManager {
     * TODO will be implemented after iteration I
     */
     public void buyItem(Point point, int type) {
+        //a pseudo cost for items
+        int itemCost = type*100;
 
+        Dimension itemDimension = new Dimension(point.x,point.y);
+
+        if(getBoughtCard().getSize()!= itemDimension){
+            System.out.println("invalid item");
+            return;
+        }
+
+
+        //if defender's turn and the tile is available
+        if(turnCount%2 == 1 && tileManager.clickedTile((int)point.getX(),(int)point.getY()).isAvailableTo(attacker)){
+
+            //check if gold is enough
+            if(attacker.getGold()<itemCost) {
+                System.out.println("insufficient funds");
+                return;
+            }
+
+            //update gold
+            attacker.setGold(attacker.getGold()-itemCost);
+
+            //need to check whether it is turret/factory/reactor//
+            turretManager.add(type,(int)point.getX(),(int)point.getY());
+
+
+        }
+        //if defender's turn and the tile is available
+        else if(turnCount%2 == 0 && tileManager.clickedTile((int)point.getX(),(int)point.getY()).isAvailableTo(defender)){
+
+            //check if gold is enough
+            if(defender.getGold()<itemCost) {
+                System.out.println("insufficient funds");
+                return;
+            }
+
+            //update gold
+            defender.setGold(defender.getGold()-itemCost);
+
+            //need to check whether it is turret/factory/reactor//
+            turretManager.add(type,(int)point.getX(),(int)point.getY());
+
+        }
     }
 
     public void update() {
@@ -144,5 +227,9 @@ public class GameManager {
         if (currentTurn)
             return "Defender";
         return "Attacker";
+    }
+
+    public int getCurrentTurnCount() {
+        return turnCount;
     }
 }

@@ -19,6 +19,37 @@ public class TurretFactory {
                                                  "Turret Number III",
                                                  "Turret Number IV"};
 
+    public static final String[] DESCRIPTIONS = {
+            "<html><pre>" +
+                    "<br/><header><h1>Miner</header></h1>" +
+                    "<br/>Miner will produce mines which will be placed in front of the miner. It can produce at most 3 mines " +
+                    "<br/>until at least one of them get destroyed. They will be placed at first exactly in front, then one to the left tile of" +
+                    "<br/>the first, then the last one will be on the right tile of the first one. Mines will have area damage effect. To" +
+                    "<br/>balance it, it will be produced in a low rate. It does not have armor penetration. Moreover it gives less" +
+                    "<br/>damage to armored units." +
+                    "</pre></html>",
+
+            "<html><pre>" +
+                    "<br/><header><h1>Fryinator</header></h1>" +
+                    "<br/>Fryinator is the most powerful weapon for defender. It will have the most damage and most range" +
+                    "<br/>But as expected its rate of fire is low, it takes up two tiles and it is the most expensive one of the turrets." +
+                    "<br/>It has armor penetration" +
+                    "</pre></html>",
+
+            "<html><pre>" +
+                    "<br/><header><h1>Lazerion</header></h1>" +
+                    "<br/>Lazerion will be the fast shooter turret." +
+                    "<br/>Therefore, it will have the least range but second powerful\n" +
+                    "projectiles for balancing. It does not have armor penetration" +
+                    "</pre></html>",
+
+            "<html><pre>" +
+                    "<br/><header><h1>Good Ol' Gun</header></h1>" +
+                    "<br/>Good Ol’ Gun will be a machine gun. As technology is kinda old with this one, it will have the least" +
+                    "<br/>damage, but an average range and a good rate of firing. No armor penetration with this gun." +
+                    "</pre></html>"
+    };
+
     public static final int[] COSTS = {100, 200, 300, 400};
     private static final int[] ATTACK_SPEEDS = {10, 12, 20, 15};
     public static final int[] WIDTHS = {40, 40, 40, 80};
@@ -42,6 +73,10 @@ public class TurretFactory {
         turret.setAttackSpeed(ATTACK_SPEEDS[type]);
 
         return turret;
+    }
+
+    public static int getSpeed(int type){
+        return ATTACK_SPEEDS[type];
     }
 
 

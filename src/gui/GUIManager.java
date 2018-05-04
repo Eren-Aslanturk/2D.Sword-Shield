@@ -2,6 +2,8 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
+
 
 public class GUIManager {
     public static int WIDTH = 800;
@@ -19,10 +21,10 @@ public class GUIManager {
     private int loadGameIndex;
 
     private GUIManager() {
-        menuPanel = MenuPanel.getInstance();
-        loadPanel = LoadPanel.getInstance();
-        creditsPanel = CreditsPanel.getInstance();
-        helpPanel = HelpPanel.getInstance();
+        menuPanel = new MenuPanel();
+        loadPanel = new LoadPanel();
+        creditsPanel = new CreditsPanel();
+        helpPanel = new HelpPanel();
 
         // not sure if GamePanel should be singleton
         gamePanel = GamePanel.getInstance();
@@ -32,6 +34,12 @@ public class GUIManager {
         frame.pack();
         frame.setSize(new Dimension(WIDTH, HEIGHT));
         frame.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+
+        frame.setBounds(
+                ((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - WIDTH/2),
+                ((int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - HEIGHT/2),
+                WIDTH, HEIGHT);
+
         frame.setVisible(true);
         frame.setResizable(false);
     }
@@ -39,6 +47,13 @@ public class GUIManager {
     public static GUIManager getInstance() {
         if (instance == null)
             instance = new GUIManager();
+        return instance;
+    }
+
+    public static GUIManager setInstance(GUIManager newInstance) {
+        if (instance != null) {
+            instance = newInstance;
+        }
         return instance;
     }
 

@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import logic.*;
 
 public class UnitCardPanel extends JPanel {
     public static final int WIDTH = 150;
@@ -26,6 +27,7 @@ public class UnitCardPanel extends JPanel {
     private BufferedImage unitImage;
     private BufferedImage subUnitImage;
 
+    public UnitCardPanel(){};
     public UnitCardPanel(String unitName, String subUnitName, int unitCost, String unitImagepath, String subUnitImagepath) {
         this.unitName = unitName;
         this.subUnitName = subUnitName;
@@ -61,11 +63,25 @@ public class UnitCardPanel extends JPanel {
         if (subUnitName != null)
             g.drawString(subUnitName, 60, 70);
 
-        if (selected)
+        if (selected){
             g.setColor(Color.BLUE);
+            setBoughtCard(getX(),getY());
+
+        }
         else
             g.setColor(Color.YELLOW);
         g.drawRect(1, 1, WIDTH - 2, HEIGHT - 2);
+    }
+
+    //pass bought unitcard to buy method in game manager
+    Dimension unitCardDimension = null;
+
+    protected void setBoughtCard(int x, int y){
+        unitCardDimension = new Dimension(x,y);
+    }
+
+    public Dimension getBoughtCard(){
+        return unitCardDimension;
     }
 
     public void setSelected(boolean selected) {

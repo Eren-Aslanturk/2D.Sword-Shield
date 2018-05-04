@@ -27,7 +27,8 @@ public class ActionPanel extends JPanel {
     private static final int DELAY = 15;
     private int mouseX, mouseY;
     private GameManager gameManager;
-    private Timer timer;
+    private static Timer timer;
+    private static int speed=50;
 
     public ActionPanel() {
         setLayout(null);
@@ -37,7 +38,8 @@ public class ActionPanel extends JPanel {
 
         // set timer
         timer = new Timer(DELAY, iterateGameState -> {
-
+            //manageable game speed as delay
+            timer.setDelay(speed);
             gameManager.update();
             repaint();
         });
@@ -46,9 +48,20 @@ public class ActionPanel extends JPanel {
         // addMouseListener(new ActionPanelMouseListener());
     }
 
-    public void startTimer() {
+    public static void startTimer() {
         timer.start();
     }
+    public static void pauseTimer() {timer.stop();}
+
+    //game speed
+    public void speedUP(){
+        if      (speed == 50) speed = 12;
+        else if (speed == 12) speed = 1;
+        else if (speed == 1) speed = 50;
+
+        timer.setDelay(speed);
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         gameManager.render(g);

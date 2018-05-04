@@ -12,6 +12,7 @@ public class SpaceshipManager {
     private SpaceshipFactory spaceshipFactory;
     private ArrayList<Spaceship> spaceships;
     private User attacker,defender;
+    private int MAX_SPAWN;
    // private StatsPanel statsPanel;
 
     public SpaceshipManager(){
@@ -19,8 +20,14 @@ public class SpaceshipManager {
         spaceships = new ArrayList<>();
        // statsPanel = new StatsPanel();
 
+        // TODO SPACESHIP DEMO
+        // these lines are added just for the demo
+        for(int i = 0; i<spaceships.size(); i++) {
+            System.out.println((spaceships.get(i).getImage()));
+        }
     }
 
+    //ship spawner
     public void add(int type, int x, int y) {
             spaceships.add(spaceshipFactory.create(type, x, y));
     }
@@ -34,8 +41,30 @@ public class SpaceshipManager {
     }
 
     public void render(Graphics g) {
+
+        //spawn all ships of same kind
         for (Spaceship spaceship : spaceships)
             g.drawImage(spaceship.getImage(), spaceship.getX(), spaceship.getY(), null);
+
+
+        //TODO remove spaceships -> remove default spawned ships (type1)
+        //spawn for a specific amount
+
+        /*
+        int spawncount = 0;
+        for (Spaceship spaceship : spaceships) {
+            //specific amount of spawns
+            if(spawncount++<=MAX_SPAWN) {
+                //remove if any spaceship is out of game field
+                if (spaceship.getX() >= 500 || spaceship.getY() >= 400) {
+
+                    //spaceships.remove(spaceship);
+
+                }
+                g.drawImage(spaceship.getImage(), spaceship.getX(), spaceship.getY(), null);
+            }
+        }
+        */
     }
 
     public void setUsers(User attacker, User defender){

@@ -1,5 +1,6 @@
 package logic.manager;
 
+import gui.UnitCardPanel;
 import logic.factory.TileFactory;
 import util.Boundary;
 import entity.Tile;
@@ -23,7 +24,7 @@ import java.awt.*;
 * between (0, 225) to (500, 275)
 */
 
-public class TileManager {
+public class TileManager extends UnitCardPanel {
     private TileFactory tileFactory;
     private ArrayList<Tile> attackerTiles;
     private ArrayList<Tile> defenderTiles;
@@ -62,12 +63,59 @@ public class TileManager {
     }
 
     private void initRoadTiles() {
+        //initialize the file from the array
         for (int j = 0; j < 500; j+= TileFactory.HEIGHT)
             roadTiles.add(tileFactory.create(1, j, 225));
     }
 
     public void removeTile(int x, int y) {
-        // TODO will be implemented after iteration I
+        //defender
+        for (int i = 300; i < 500; i += TileFactory.WIDTH) {
+            for (int j = 100; j < 200; j += TileFactory.HEIGHT){
+                //match case for upper base
+                if(findTile(x,y)!=null){
+                    defenderTiles.remove(findTile(x,y));
+                    return;
+                }
+            }
+            for (int j = 300; j < 400; j+= TileFactory.HEIGHT) {
+                //match case for lower base
+                if (findTile(x, y) != null) {
+                    defenderTiles.remove(findTile(x, y));
+                    return;
+                }
+            }
+        }
+        //attacker
+        for (int i = 0; i < 200; i += TileFactory.WIDTH) {
+            for (int j = 100; j < 200; j += TileFactory.HEIGHT){
+                //match case for upper base
+                if(findTile(x,y)!=null){
+                    attackerTiles.remove(findTile(x,y));
+                    return;
+                }
+            }
+            for (int j = 300; j < 400; j+= TileFactory.HEIGHT) {
+                //match case for lower base
+                if (findTile(x, y) != null) {
+                    attackerTiles.remove(findTile(x, y));
+                    return;
+                }
+            }
+        }
+        System.out.println("tile is not found");
+    }
+
+    //find a tile with a given location
+    public Tile findTile(int x, int y){
+        //attacker tile
+        for (int i = 0; i < attackerTiles.size(); i ++) {
+            //match case
+            if(attackerTiles.get(i).getX()==x && attackerTiles.get(i).getX()==y)
+                return attackerTiles.get(i);
+        }
+        //not found
+        return null;
     }
 
     public Tile clickedTile(int x, int y) {

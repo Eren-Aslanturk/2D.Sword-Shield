@@ -18,6 +18,35 @@ public class FactoryFactory {
                                                 "Factory Number II",
                                                  "Factory Number III",
                                                  "Factory Number IV"};
+
+    public static final String[] DESCRIPTIONS = {
+            "<html><pre>" +
+                    "<br/><header><h1>Swedish Spaceship Co</h1></header>" +
+                    "<br/>If you want very fast things which will divide in three when first one is destroyed Swedish is the way " +
+                    "<br/>to go. This units won’t have any armor and they will have low health, but as expected they will be very fast." +
+                    "<br/>When the first one is destroyed it will spawn three more. Production rate is low." +
+                    "</pre></html>",
+
+            "<html><pre>" +
+                    "<br/><header><h1>Muscular Spaceship Co</h1></header>" +
+                    "<br/>As the name suggests this factory will produce heavy and powerful units. Therefore, it has a low" +
+                    "<br/>production rate." +
+                    "<br/>Units will be moderate in speed but will have heavy armor and high health." +
+                    "</pre></html>",
+
+            "<html><pre>" +
+                    "<br/><header><h1>Athletic Spaceship Co.</h1></header>" +
+                    "<br/>This factory will produce units which will be fast, have light armor and average health at average" +
+                    "<br/>production rate." +
+                    "</pre></html>",
+
+            "<html><pre>" +
+                    "<br/><header><h1>Tough Tough Co</h1>" +
+                    "<br/>This is the most expensive factory, it will take 2 tiles and will have a low production rate. It will" +
+                    "<br/>produce units with heavy armor and heavy health which can go at average speed." +
+                    "</pre></html>"
+    };
+
     public static final int[] COSTS = {100, 200, 300, 400};
     private static final int[] PRODUCTION_RATES = {45, 40, 50, 60};
     private static final int[] WIDTHS = {50, 40, 50, 25};
@@ -42,5 +71,9 @@ public class FactoryFactory {
         factory.setProductionRate(PRODUCTION_RATES[type]);
 
         return factory;
+    }
+
+    public static int getSpeed(int type) {
+        return PRODUCTION_RATES[type];
     }
 }

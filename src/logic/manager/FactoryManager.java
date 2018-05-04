@@ -18,12 +18,49 @@ public class FactoryManager {
         factories = new ArrayList<>();
         factoryFactory = new FactoryFactory();
 
-        // TODO the following lines will be deleted after the demo
+        // TODO FACTORY DEMO
         // these lines are added just for the demo
         add(2,55,105);
+
+        /*
+        insertFactory(1, 6, 4, 0);  //attacker
+        insertFactory(1, 2, 2, 1);  //defender
+        */
+
     }
     public void add(int type, int x, int y) {
         factories.add(factoryFactory.create(type,x,y));
+    }
+
+    // TODO factory replacement row x column DONE
+    public void insertFactory(int type, int row, int column, int playerNo){
+        //factory types
+        if(type>=0 && type<4){
+            //attacker
+            if(playerNo==0){
+                //row and column condition: column=[1,5] && row={1,2,5,6}
+                if( (1<=column && column<5) && (row == 1 || row == 2 || row == 5 || row == 6) ) {
+                    //actual to pseudo dimension translation
+                    int axis = ((column-1)*10+1)*5;
+                    int ordinate = ((row-1)*10+1)*5 + 100;
+                    //create factory
+                    add(type, axis, ordinate);
+                }
+            }
+            //defender
+            else if(playerNo==1){
+                //row and column condition: column=[1,5] && row={1,2,5,6}
+                if( (1<=column && column<5) && (row == 1 || row == 2 || row == 5 || row == 6) ) {
+                    //actual to pseudo dimension translation
+                    int axis = ((column-1+6)*10+1)*5;
+                    int ordinate = ((row-1)*10+1)*5 + 100;
+                    //create factory
+                    add(type, axis, ordinate);
+                }
+            }
+
+        }
+
     }
 
     public ArrayList<Spaceship> produceSpaceships() {

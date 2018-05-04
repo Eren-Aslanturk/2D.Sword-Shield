@@ -1,10 +1,12 @@
 package gui;
 
 import util.FileManager;
+import util.SoundManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MenuPanel extends JPanel {
 
@@ -43,17 +45,32 @@ public class MenuPanel extends JPanel {
             GUIManager.getInstance().showCreditsPanel();
         });
 
-        helpButton = new MenuButton(355, 450,fileManager.getImage("/images/menu/help.png"),
+        helpButton = new MenuButton(362,510,fileManager.getImage("/images/menu/help.png"),
                 fileManager.getImage("/images/menu/helphover.png"));
-        helpButton.addActionListener(help -> {
-            GUIManager.getInstance().showHelpPanel();
+        helpButton.addActionListener(credits -> GUIManager.getInstance().showHelpPanel());
+
+        //TODO new tracks, (optionally) if-else to switch song and stop track will be added
+        soundButton = new MenuButton(355, 450,fileManager.getImage("/images/menu/music.png"),
+                fileManager.getImage("/images/menu/musichover.png"));
+        AtomicBoolean playing = new AtomicBoolean(false);
+        soundButton.addActionListener(sound-> {
+
+            if(!playing.get()) {
+
+
+                SoundManager.getInstance().playSound("/sounds/musictest1.wav");
+                playing.set(true);
+            }
+            else
+                playing.set(false);
+
         });
 
-
-        soundButton = new MenuButton(355, 510,fileManager.getImage("/images/menu/music.png"),
-                fileManager.getImage("/images/menu/musichover.png"));
-        soundButton.addActionListener(sound-> {
-            // TODO
+        //TODO help button image
+        helpButton = new MenuButton(362,510,fileManager.getImage("/images/menu/help.png"),
+                fileManager.getImage("/images/menu/helphover.png"));
+        helpButton.addActionListener(credits -> {
+            GUIManager.getInstance().showHelpPanel();
         });
 
         add(playButton);
@@ -61,6 +78,7 @@ public class MenuPanel extends JPanel {
         add(creditsButton);
         add(helpButton);
         add(soundButton);
+
 
         setPreferredSize(new Dimension(800, 600));
     }

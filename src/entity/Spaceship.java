@@ -8,6 +8,7 @@ public class Spaceship extends GameObject{
     private double armor;
     private double hp;
     private int reward;
+    private String description;
 
     public Spaceship() {
         super();
@@ -43,5 +44,11 @@ public class Spaceship extends GameObject{
 
     public void setReward(int reward) {
         this.reward = reward;
+    }
+
+    public String getDescription() {return description;}
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

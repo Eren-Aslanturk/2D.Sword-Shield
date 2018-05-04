@@ -52,10 +52,37 @@ public class ProjectileManager {
 
     // to remove projectiles that are out of range or hit to their target
     public void cleanDeads() {
+        //TODO just to test out related functions
         for (int i = 0 ; i < projectiles.size() ; i++){
+            //invalid range condition
             if(projectiles.get(i).getRange() <= 0 ){
                projectiles.remove(i);
             }
+
+            //if collision happens and no hp left for target ship
+/*
+            int spaceshipIndex = findSpaceship(projectiles.get(i).getX(),projectiles.get(i).getY());
+            if(spaceshipIndex>=0){
+                Spaceship target = getSpaceships().get(spaceshipIndex);
+                if(target!=null){
+                    if(target.getHp()>0){
+                        Projectile bullet = projectiles.get(i);
+                        collide(target,bullet);
+                    }
+                }
+
+            }
+*/
+
+            /*
+            Spaceship target;
+            target = getSpaceships().get(findSpaceship(projectiles.get(i).getX(),projectiles.get(i).getTargetY()));
+
+            if(target!=null && target.getHp()<=0){
+                //clean target and projectile
+                getSpaceships().remove(target);
+                projectiles.remove(i);
+            }*/
         }
     }
 
@@ -67,6 +94,7 @@ public class ProjectileManager {
 
     public void render(Graphics g) {
         for (Projectile projectile : projectiles)
+            //cleanDeads();
             g.drawImage(projectile.getImage(), projectile.getX(), projectile.getY()   , null);
     }
 
