@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.Date;
-import java.util.Timer;
+import java.util.*;
+import util.User;
 
 public class StatsPanel extends JPanel {
     public static int WIDTH = 400;
@@ -19,6 +19,8 @@ public class StatsPanel extends JPanel {
     private JLabel attackerGold;
     private JLabel defenderGold;
     private JLabel timeLeft;
+
+    private User attacker,defender;
 
     public StatsPanel() {
         setLayout(null);
@@ -84,4 +86,12 @@ public class StatsPanel extends JPanel {
     public void setTimeLeft(int timeLeft) {
         this.timeLeft.setText("" + timeLeft);
     }
+    public void setUsers(User attacker, User defender){
+        this.attacker = attacker;
+        this.defender = defender;
+    }
+    public void strings(){
+        String a = Integer.toString(attacker.getGold());
+    }
+
 }

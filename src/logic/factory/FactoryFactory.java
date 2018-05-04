@@ -19,7 +19,7 @@ public class FactoryFactory {
                                                  "Factory Number III",
                                                  "Factory Number IV"};
     public static final int[] COSTS = {100, 200, 300, 400};
-    private static final int[] PRODUCTION_RATES = {100, 100, 300, 400};
+    private static final int[] PRODUCTION_RATES = {1, 40, 3, 4};
     private static final int[] WIDTHS = {50, 40, 50, 25};
     private static final int[] HEIGHTS = {50, 40, 45, 50};
 

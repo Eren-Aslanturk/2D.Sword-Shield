@@ -16,12 +16,12 @@ public class ProjectileFactory {
                                                 "/images/projectile/projectile3.png",
                                                 "/images/projectile/projectile4.png"};
 
-    private static final double[] SPEEDS  = {10,14,18,23};
+    private static final double[] SPEEDS  = {5,7,9,11.5};
     private static final double[] ARMORPENS = {2.3, 4.5, 5.6, 6.7};
-    private static final double[] DAMAGES = {3.4, 5.4, 3.3, 2.2};
-    private static final double[] RANGES = {220, 200, 232, 232};
-    public static final int[] WIDTHS = {40, 40, 40, 40};
-    public static final int[] HEIGHTS = {40, 40, 40, 40};
+    private static final double[] DAMAGES = {34, 54, 126, 110};
+    private static final double[] RANGES = {145, 144, 123.25, 145.5};
+    public static final int[] WIDTHS = {40, 46, 35, 103};
+    public static final int[] HEIGHTS = {40, 45, 35, 105};
 
     // FileManager
     FileManager fileManager;
@@ -36,7 +36,7 @@ public class ProjectileFactory {
         BufferedImage image = fileManager.getImage(IMAGEPATHS[type]);
         image = fileManager.getResizedImage(image, WIDTHS[type], HEIGHTS[type]);
         // initialize properties
-        projectile.setImage(image);
+        //projectile.setImage(image);
         projectile.setDamage(DAMAGES[type]);
         projectile.setArmorpen(ARMORPENS[type]);
         projectile.setSpeed(SPEEDS[type]);
@@ -52,20 +52,22 @@ public class ProjectileFactory {
 
         float angle;
 
+        if(x > spaceship.getX()) {
+            angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - y, spaceship.getX() - x));
+        }
+        else {
+            angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - y, -spaceship.getX() + x));
+        }
+        if(angle < 0){
+            angle += 360;
+        }
 
-            angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - y , spaceship.getX() - x ));
 
-
-            //angle = (float) Math.toDegrees(Math.atan2(spaceship.getY() - y, -spaceship.getX() + x));
-
-
-
-
-        projectile.setTargetX(a/c);
+        projectile.setTargetX(a/c + 2);
         projectile.setTargetY(b/c);
 
         double rotationRequired =  Math.toRadians(angle);
-        projectile.setAngle(angle);
+
 
         projectile.setImage(FileManager.rotate(image,rotationRequired));
 
@@ -79,7 +81,6 @@ public class ProjectileFactory {
 
         Spaceship spaceship = spaceships.get(0);
         Spaceship tmp;
-
         for(int i = 0; i < spaceships.size() - 1 ; i++){
             //spaceship = spaceships.get(i);
             tmp = spaceships.get(i + 1);

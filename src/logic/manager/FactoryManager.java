@@ -43,7 +43,9 @@ public class FactoryManager {
 
     }
 
-    public void setSpaceshipFactory(SpaceshipFactory spaceshipFactory){this.spaceshipFactory = spaceshipFactory;}
+    public void setSpaceshipFactory(SpaceshipFactory spaceshipFactory){
+        this.spaceshipFactory = spaceshipFactory;
+    }
     public void increase(){
         j++;
     }

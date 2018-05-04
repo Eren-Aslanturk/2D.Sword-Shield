@@ -56,7 +56,6 @@ public class TurretManager {
                 if(angle < 0){
                     angle += 360;
                 }
-
                 double rotationRequired =  Math.toRadians(angle);
                 Projectile projectile = projectileFactory.create(turrets.get(i).getType(),turrets.get(i).getX()- ProjectileFactory.WIDTHS[turrets.get(i).getType()/2],
                         turrets.get(i).getY()- ProjectileFactory.HEIGHTS[turrets.get(i).getType()]/2);

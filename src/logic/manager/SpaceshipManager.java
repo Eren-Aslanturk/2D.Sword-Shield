@@ -1,24 +1,21 @@
 package logic.manager;
 
 import entity.Spaceship;
+import util.User;
 import logic.factory.SpaceshipFactory;
-import entity.Projectile;
-import logic.factory.ProjectileFactory;
-import logic.CollisionManager;
+
 import java.awt.*;
 import java.util.ArrayList;
 
 public class SpaceshipManager {
     private SpaceshipFactory spaceshipFactory;
     private ArrayList<Spaceship> spaceships;
-    private ArrayList<Projectile> projectiles;
-    private CollisionManager colman;
+    private User attacker,defender;
 
     public SpaceshipManager(){
         spaceshipFactory = new SpaceshipFactory();
         spaceships = new ArrayList<>();
-        projectiles = new ArrayList<>();
-        colman = new CollisionManager();
+
 
     }
 
@@ -34,34 +31,28 @@ public class SpaceshipManager {
         }
     }
 
-    public void destroySpaceship(){
-        for(int i = 0; i < spaceships.size() ; i++){
-            if(spaceships.get(i).getHp() <= 0)
-                spaceships.remove(i);
-            if(spaceships.get(i).getX() >= 450)
-                spaceships.remove(i);
-        }
-    }
-    public void takeDamage(){
-        for(int i = 0; i < spaceships.size() ; i++){
-           for(int j = 0; j < projectiles.size(); j++){
-
-               if(colman.collide(spaceships.get(i),projectiles.get(j))) {
-                   System.out.println("1");
-                   spaceships.get(i).setHp(spaceships.get(i).getHp() - projectiles.get(j).getDamage());
-                   System.out.println(spaceships.get(i).getHp());
-               }
-
-
-           }
-        }
-    }
-
     public void render(Graphics g) {
         for (Spaceship spaceship : spaceships)
             g.drawImage(spaceship.getImage(), spaceship.getX(), spaceship.getY(), null);
     }
 
+    public void setUsers(User attacker, User defender){
+        this.attacker = attacker;
+        this.defender = defender;
+    }
+
+    public void removeSpaceships(){
+        for(int i = 0; i < spaceships.size() ; i++){
+            if(spaceships.get(i).getX()>450) {
+                attacker.setScore(attacker.getScore() + spaceships.get(i).getReward());
+                spaceships.remove(i);
+            }
+            if(spaceships.get(i).getHp() <= 0) {
+                defender.setGold(defender.getGold() + spaceships.get(i).getReward());
+                spaceships.remove(i);
+            }
+        }
+    }
     public ArrayList<Spaceship> getSpaceships() {
         return spaceships;
     }

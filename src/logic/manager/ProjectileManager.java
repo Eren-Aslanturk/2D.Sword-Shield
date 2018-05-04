@@ -5,15 +5,33 @@ import entity.Spaceship;
 import logic.factory.ProjectileFactory;
 import java.awt.*;
 import java.util.ArrayList;
+import logic.CollisionManager;
 
 public class ProjectileManager {
-
+    private ArrayList<Spaceship> spaceships;
     private ArrayList<Projectile> projectiles;
     private ProjectileFactory projectileFactory;
+    private CollisionManager collision;
 
     public ProjectileManager() {
         projectiles = new ArrayList<>();
         projectileFactory = new ProjectileFactory();
+        collision = new CollisionManager();
+    }
+
+    public void destroySpaceship() {
+        for (int i = 0; i < projectiles.size(); i++) {
+            for(int j = 0; j < spaceships.size(); j++) {
+                if(spaceships.get(j)!=null && projectiles.get(i)!=null) {
+                    if (collision.collides(spaceships.get(j), projectiles.get(i))) {
+                        double hp = spaceships.get(j).getHp();
+                        double damage = projectiles.get(i).getDamage();
+                        double newHP = hp - damage;
+                        spaceships.get(j).setHp(newHP);
+                    }
+                }
+            }
+        }
     }
 
     // moves all projectiles towards their targets
@@ -33,12 +51,12 @@ public class ProjectileManager {
             if(projectiles.get(i).getRange() <= 0 ){
                projectiles.remove(i);
             }
-            //after collision part completed will be implemented
         }
-
     }
-    public void setSpaceships(ArrayList<Spaceship> spaceships){
+
+    public void setSpaceships(ArrayList<Spaceship> spaceships) {
         projectileFactory.setSpaceships(spaceships);
+        this.spaceships = spaceships;
     }
 
 
@@ -50,6 +68,7 @@ public class ProjectileManager {
     public ProjectileFactory getProjectileFactory() {
         return projectileFactory;
     }
+
     public void addProjectiles(ArrayList<Projectile> projectiles){
         for(int i = 0 ; i < projectiles.size() ; i++){
             this.projectiles.add(projectiles.get(i));
