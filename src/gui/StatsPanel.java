@@ -71,8 +71,10 @@ public class StatsPanel extends JPanel {
         this.attackerGold.setText("" + attackerGold);
     }
 
-    public void setDefenderGold(int defenderGold) {
-        this.defenderGold.setText("" + defenderGold);
+    //This works without a problem but whenever I call it from somewhere it gives some errors
+    //Tried it with GameManager and Spaceship Manager
+    public void setDefenderGold() {
+        this.defenderGold.setText("" + String.valueOf(defender.getGold()));
     }
 
     public void setAttackerScore(int attackerScore) {
@@ -91,6 +93,8 @@ public class StatsPanel extends JPanel {
         this.defender = defender;
     }
 
+
+    //Point was updating through here but they can be discarded for now as I am looking for another way
     public void updateGold(){
         attackerGold.setText(String.valueOf(attacker.getGold()));
         defenderGold.setText(String.valueOf(defender.getGold()));

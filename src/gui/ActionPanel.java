@@ -37,6 +37,7 @@ public class ActionPanel extends JPanel {
 
         // set timer
         timer = new Timer(DELAY, iterateGameState -> {
+
             gameManager.update();
             repaint();
         });
