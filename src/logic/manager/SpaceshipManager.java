@@ -3,6 +3,7 @@ package logic.manager;
 import entity.Spaceship;
 import util.User;
 import logic.factory.SpaceshipFactory;
+import gui.StatsPanel;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class SpaceshipManager {
     private SpaceshipFactory spaceshipFactory;
     private ArrayList<Spaceship> spaceships;
     private User attacker,defender;
+    private StatsPanel statsPanel;
 
     public SpaceshipManager(){
         spaceshipFactory = new SpaceshipFactory();
@@ -49,6 +51,7 @@ public class SpaceshipManager {
             }
             if(spaceships.get(i).getHp() <= 0) {
                 defender.setGold(defender.getGold() + spaceships.get(i).getReward());
+                System.out.println(defender.getGold());
                 spaceships.remove(i);
             }
         }

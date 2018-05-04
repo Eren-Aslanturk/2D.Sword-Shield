@@ -6,17 +6,21 @@ import logic.factory.ProjectileFactory;
 import java.awt.*;
 import java.util.ArrayList;
 import logic.CollisionManager;
+import logic.GameManager;
+import util.User;
 
 public class ProjectileManager {
     private ArrayList<Spaceship> spaceships;
     private ArrayList<Projectile> projectiles;
     private ProjectileFactory projectileFactory;
     private CollisionManager collision;
+    private User attacker,defender;
 
     public ProjectileManager() {
         projectiles = new ArrayList<>();
         projectileFactory = new ProjectileFactory();
         collision = new CollisionManager();
+
     }
 
     public void destroySpaceship() {
@@ -28,6 +32,7 @@ public class ProjectileManager {
                         double damage = projectiles.get(i).getDamage();
                         double newHP = hp - damage;
                         spaceships.get(j).setHp(newHP);
+
                     }
                 }
             }

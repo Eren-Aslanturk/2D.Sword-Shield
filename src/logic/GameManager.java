@@ -23,7 +23,6 @@ public class GameManager {
     private ProjectileManager projectileManager;
     private ReactorManager reactorManager;
 
-    private StatsPanel statsPanel;
 
     private ArrayList<Spaceship> spaceships;
     private TileManager tileManager;
@@ -79,6 +78,7 @@ public class GameManager {
 
     public void update() {
 
+
         spaceshipManager.addSpaceships(factoryManager.produceSpaceships());
         factoryManager.increase();
         turretManager.increase();
@@ -97,6 +97,7 @@ public class GameManager {
 
             spaceshipManager.moveAll();
         }
+
     }
 
     public void render(Graphics g) {

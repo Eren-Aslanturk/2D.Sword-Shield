@@ -72,7 +72,7 @@ public class StatsPanel extends JPanel {
     }
 
     public void setDefenderGold(int defenderGold) {
-        this.defenderGold.setText("" + attackerGold);
+        this.defenderGold.setText("" + defenderGold);
     }
 
     public void setAttackerScore(int attackerScore) {
@@ -90,8 +90,15 @@ public class StatsPanel extends JPanel {
         this.attacker = attacker;
         this.defender = defender;
     }
-    public void strings(){
-        String a = Integer.toString(attacker.getGold());
+
+    public void updateGold(){
+        attackerGold.setText(String.valueOf(attacker.getGold()));
+        defenderGold.setText(String.valueOf(defender.getGold()));
+    }
+
+    public void updateScore(){
+        attackerScore.setText(String.valueOf(attacker.getScore()));
+        defenderScore.setText(String.valueOf(defender.getScore()));
     }
 
 }
