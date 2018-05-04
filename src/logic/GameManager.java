@@ -84,9 +84,11 @@ public class GameManager {
             turretManager.setSpaceships(spaceships);
             projectileManager.addProjectiles(turretManager.fireProjectiles());
 
-
             projectileManager.moveAll();
+            spaceshipManager.takeDamage();
+            spaceshipManager.destroySpaceship();
             projectileManager.cleanDeads();
+
             attacker.setGold(reactorManager.gatherGold() + attacker.getGold());
 
 

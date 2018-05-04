@@ -19,7 +19,7 @@ public class ProjectileFactory {
     private static final double[] SPEEDS  = {10,14,18,23};
     private static final double[] ARMORPENS = {2.3, 4.5, 5.6, 6.7};
     private static final double[] DAMAGES = {3.4, 5.4, 3.3, 2.2};
-    private static final double[] RANGES = {45, 44, 23.25, 45.5};
+    private static final double[] RANGES = {220, 200, 232, 232};
     public static final int[] WIDTHS = {40, 40, 40, 40};
     public static final int[] HEIGHTS = {40, 40, 40, 40};
 

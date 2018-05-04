@@ -24,7 +24,7 @@ public class ActionPanel extends JPanel {
     public static final int WIDTH = 500;
     public static final int HEIGHT = 500;
 
-    private static final int DELAY = 160;
+    private static final int DELAY = 16;
     private int mouseX, mouseY;
     private GameManager gameManager;
     private Timer timer;

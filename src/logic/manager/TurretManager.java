@@ -41,7 +41,6 @@ public class TurretManager {
         // TODO will be implemented after iteration I
 
         for(int i = 0; i < turrets.size() ; i++){
-            //System.out.println(j%turrets.get(i).getAttackSpeed() + " forlop");
             if(j%turrets.get(i).getAttackSpeed() == 0) {
                 //x and y will be decided later
                 Spaceship spaceship = closestSpaceship(turrets.get(i).getX());
@@ -57,7 +56,7 @@ public class TurretManager {
                 if(angle < 0){
                     angle += 360;
                 }
-                System.out.println(angle + "= Turret ");
+
                 double rotationRequired =  Math.toRadians(angle);
                 Projectile projectile = projectileFactory.create(turrets.get(i).getType(),turrets.get(i).getX()- ProjectileFactory.WIDTHS[turrets.get(i).getType()/2],
                         turrets.get(i).getY()- ProjectileFactory.HEIGHTS[turrets.get(i).getType()]/2);
@@ -65,7 +64,6 @@ public class TurretManager {
 
                 Turret turret = turrets.get(i);
                 BufferedImage reloadedImage = FileManager.getInstance().getImage(TurretFactory.IMAGEPATHS[turret.getType()]);
-                System.out.println( projectile.getAngle() + "= Projectile ");
                 turret.setImage(FileManager.getResizedImage(reloadedImage, TurretFactory.WIDTHS[turret.getType()],TurretFactory.HEIGHTS[turret.getType()]));
 
 

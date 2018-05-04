@@ -23,7 +23,7 @@ public class ProjectileManager {
             int newY = projectile.getTargetY() + projectile.getY();
             projectile.setX(newX);
             projectile.setY(newY);
-            projectile.setRange(projectile.getRange() - projectile.getTargetX());
+            projectile.setRange(projectile.getRange() - projectile.getSpeed());
         }
     }
 
