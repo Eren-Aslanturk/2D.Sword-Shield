@@ -23,6 +23,7 @@ public class GameManager {
     private ProjectileManager projectileManager;
     private ReactorManager reactorManager;
 
+    private StatsPanel statsPanel;
 
     private ArrayList<Spaceship> spaceships;
     private TileManager tileManager;
@@ -54,6 +55,8 @@ public class GameManager {
         projectileManager = new ProjectileManager();
         reactorManager = new ReactorManager();
         tileManager = new TileManager();
+        statsPanel = new StatsPanel();
+
         factoryManager.setSpaceshipFactory(spaceshipManager.getSpaceshipFactory());
         turretManager.setProjectileFactory(projectileManager.getProjectileFactory());
         spaceshipManager.setUsers(attacker,defender);

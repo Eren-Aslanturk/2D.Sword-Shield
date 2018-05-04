@@ -12,12 +12,12 @@ public class SpaceshipManager {
     private SpaceshipFactory spaceshipFactory;
     private ArrayList<Spaceship> spaceships;
     private User attacker,defender;
-    private StatsPanel statsPanel;
+   // private StatsPanel statsPanel;
 
     public SpaceshipManager(){
         spaceshipFactory = new SpaceshipFactory();
         spaceships = new ArrayList<>();
-
+       // statsPanel = new StatsPanel();
 
     }
 
@@ -43,6 +43,7 @@ public class SpaceshipManager {
         this.defender = defender;
     }
 
+    //Scores and golds are updated through here by controlling the state of spaceships
     public void removeSpaceships(){
         for(int i = 0; i < spaceships.size() ; i++){
             if(spaceships.get(i).getX()>450) {
@@ -52,6 +53,7 @@ public class SpaceshipManager {
             if(spaceships.get(i).getHp() <= 0) {
                 defender.setGold(defender.getGold() + spaceships.get(i).getReward());
                 System.out.println(defender.getGold());
+             //   statsPanel.setDefenderGold();
                 spaceships.remove(i);
             }
         }
