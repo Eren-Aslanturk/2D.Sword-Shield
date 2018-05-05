@@ -52,8 +52,8 @@ public class TurretFactory {
 
     public static final int[] COSTS = {100, 200, 300, 400};
     private static final int[] ATTACK_SPEEDS = {10, 12, 20, 15};
-    public static final int[] WIDTHS = {40, 40, 40, 80};
-    public static final int[] HEIGHTS = {40, 40, 40, 80};
+    public static final int[] WIDTHS = {50, 50, 50, 50};
+    public static final int[] HEIGHTS = {50, 50, 50, 50};
 
     // File Manager
     FileManager fileManager;
