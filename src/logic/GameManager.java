@@ -190,6 +190,10 @@ public class GameManager extends UnitCardPanel{
 
             spaceshipManager.moveAll();
         }
+        statsPanel.setDefenderGold(defender.getGold());
+        statsPanel.setAttackerGold(attacker.getGold());
+        statsPanel.setDefenderScore(defender.getScore());
+        statsPanel.setAttackerScore(attacker.getScore());
 
     }
 

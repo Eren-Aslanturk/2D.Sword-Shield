@@ -11,7 +11,7 @@ public class ReactorFactory {
     // Reactor properties
     public static final String IMAGEPATH = "/images/reactor/reactor.png";
     public static final String NAME = "Reactor";
-    public static final int COST = 5;
+    public static final int COST = 100;
 
     public static final String DESCRIPTIONS =
             "<html><pre>" +
@@ -24,8 +24,8 @@ public class ReactorFactory {
 
     private static final int INCOME_RATE = 5;
     private static final int INCOME = 5;
-    private static final int WIDTH = 55;
-    private static final int HEIGHT = 100;
+    private static final int WIDTH = 50;
+    private static final int HEIGHT = 50;
 
     // FileManager
     FileManager fileManager;

@@ -1,3 +1,4 @@
+
 package gui;
 
 import util.FileManager;
@@ -71,7 +72,7 @@ public class StatsPanel extends JPanel {
 
     public void setDefenderGold(int defenderGold) {
         this.defenderGold.setText("" + defenderGold);
-       // System.out.println(this.defenderGold.getText());
+        // System.out.println(this.defenderGold.getText());
     }
 
     public void setAttackerScore(int attackerScore) {
