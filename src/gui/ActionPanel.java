@@ -24,7 +24,7 @@ public class ActionPanel extends JPanel {
     public static final int WIDTH = 500;
     public static final int HEIGHT = 500;
 
-    private static final int DELAY = 15;
+    private static final int DELAY = 4;
     private int mouseX, mouseY;
     private GameManager gameManager;
     private static Timer timer;
@@ -65,5 +65,8 @@ public class ActionPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         gameManager.render(g);
+    }
+    public void setStatsPanel(StatsPanel panel){
+        gameManager.setStatsPanel(panel);
     }
 }

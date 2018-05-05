@@ -24,15 +24,15 @@ public class ProjectileManager {
     }
 
     public void destroySpaceship() {
-        for (int i = 0; i < projectiles.size(); i++) {
-            for(int j = 0; j < spaceships.size(); j++) {
+        for (int i = 0; i < projectiles.size()-1; i++) {
+            for(int j = 0; j < spaceships.size()-1; j++) {
                 if(spaceships.get(j)!=null && projectiles.get(i)!=null) {
                     if (collision.collides(spaceships.get(j), projectiles.get(i))) {
                         double hp = spaceships.get(j).getHp();
                         double damage = projectiles.get(i).getDamage();
                         double newHP = hp - damage;
                         spaceships.get(j).setHp(newHP);
-
+                        projectiles.remove(i);
                     }
                 }
             }

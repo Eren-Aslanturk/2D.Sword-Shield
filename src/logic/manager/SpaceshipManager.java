@@ -78,10 +78,10 @@ public class SpaceshipManager {
             if(spaceships.get(i).getX()>450) {
                 attacker.setScore(attacker.getScore() + spaceships.get(i).getReward());
                 spaceships.remove(i);
+                System.out.println(attacker.getScore());
             }
             if(spaceships.get(i).getHp() <= 0) {
                 defender.setGold(defender.getGold() + spaceships.get(i).getReward());
-                System.out.println(defender.getGold());
              //   statsPanel.setDefenderGold();
                 spaceships.remove(i);
             }

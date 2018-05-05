@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
         setLayout(null);
         backgroundImage = FileManager.getInstance().getImage("/images/gamepanel/bg.png");
 
-        gameManager = GameManager.getInstance();
+       // gameManager = GameManager.getInstance();
         actionPanel = new ActionPanel();
         actionPanel.setBounds(new Rectangle(150, 50, ActionPanel.WIDTH, ActionPanel.HEIGHT));
         attackUnitsPanel = new UnitsPanel("Attack");
@@ -46,13 +46,14 @@ public class GamePanel extends JPanel {
         add(actionPanel);
         add(utilityPanel);
         add(statsPanel);
-
+        actionPanel.setStatsPanel(statsPanel);
         setPreferredSize(new Dimension(800, 600));
     }
 
     public void startTimer() {
         actionPanel.startTimer();
     }
+
 
     public static GamePanel getInstance() {
         if (instance == null)

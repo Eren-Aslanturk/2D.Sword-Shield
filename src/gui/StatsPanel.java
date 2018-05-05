@@ -45,7 +45,7 @@ public class StatsPanel extends JPanel {
         timeLeft.setFont(new Font("Helvetica", Font.PLAIN, 19));
 
 
-        defenderGold = new JLabel("" + 800);
+        defenderGold = new JLabel();
         defenderGold.setForeground(Color.CYAN);
         defenderGold.setBounds(new Rectangle(260, 7, 40, 40));
         defenderGold.setFont(new Font("Helvetica", Font.PLAIN, 19));
@@ -73,8 +73,9 @@ public class StatsPanel extends JPanel {
 
     //This works without a problem but whenever I call it from somewhere it gives some errors
     //Tried it with GameManager and Spaceship Manager
-    public void setDefenderGold() {
-        this.defenderGold.setText("" + String.valueOf(defender.getGold()));
+    public void setDefenderGold(int defenderGold) {
+        this.defenderGold.setText("" + defender.getGold());
+       // System.out.println(this.defenderGold.getText());
     }
 
     public void setAttackerScore(int attackerScore) {

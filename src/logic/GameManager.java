@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.io.Serializable;
 import gui.UnitCardPanel;
 
+import javax.swing.*;
+
 public class GameManager extends UnitCardPanel{
     private static GameManager instance;
 
@@ -68,6 +70,7 @@ public class GameManager extends UnitCardPanel{
         factoryManager.setSpaceshipFactory(spaceshipManager.getSpaceshipFactory());
         turretManager.setProjectileFactory(projectileManager.getProjectileFactory());
         spaceshipManager.setUsers(attacker,defender);
+        statsPanel.setUsers(attacker,defender);
     }
 
     /*
@@ -160,7 +163,11 @@ public class GameManager extends UnitCardPanel{
         }
     }
 
+    public void setStatsPanel(StatsPanel panel){
+        this.statsPanel = panel;
+    }
     public void update() {
+        statsPanel.setDefenderGold();
 
         spaceshipManager.addSpaceships(factoryManager.produceSpaceships());
         factoryManager.increase();
@@ -176,7 +183,6 @@ public class GameManager extends UnitCardPanel{
             projectileManager.destroySpaceship();
             projectileManager.cleanDeads();
             attacker.setGold(reactorManager.gatherGold() + attacker.getGold());
-
 
             spaceshipManager.moveAll();
         }
