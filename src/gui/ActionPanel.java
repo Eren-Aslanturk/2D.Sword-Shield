@@ -24,16 +24,18 @@ public class ActionPanel extends JPanel {
     public static final int WIDTH = 500;
     public static final int HEIGHT = 500;
 
-    private static final int DELAY = 4;
+    private static final int DELAY = 18;
+    private static final int TURN_TIME = 20;
     private int mouseX, mouseY;
     private GameManager gameManager;
     private static Timer timer;
     private static int speed=50;
+    private int currentTime;
 
     public ActionPanel() {
         setLayout(null);
         setOpaque(false);
-
+        currentTime = 0;
         gameManager = GameManager.getInstance();
 
         // set timer
@@ -41,6 +43,7 @@ public class ActionPanel extends JPanel {
             //manageable game speed as delay
             timer.setDelay(speed);
             gameManager.update();
+            currentTime += timer.getDelay();
             repaint();
         });
 
@@ -60,6 +63,13 @@ public class ActionPanel extends JPanel {
         else if (speed == 1) speed = 50;
 
         timer.setDelay(speed);
+    }
+
+    public void setCurrentTime(int currentTime) {
+        this.currentTime = currentTime;
+    }
+    public int getCurrentTime() {
+        return currentTime;
     }
 
     protected void paintComponent(Graphics g) {

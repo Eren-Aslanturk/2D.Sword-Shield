@@ -20,7 +20,7 @@ import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class HelpPanel extends JPanel{
+public class HelpPanel extends JPanel {
     private static int WIDTH = 840;
     private static int HEIGHT = 550;
     private final int MAX_SIZE = 13;
@@ -534,6 +534,4 @@ public class HelpPanel extends JPanel{
             }
         }
     }
-
-
 }

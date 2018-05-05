@@ -1,6 +1,7 @@
 
 package gui;
 
+import logic.GameManager;
 import util.FileManager;
 
 import javax.swing.*;
@@ -83,8 +84,10 @@ public class StatsPanel extends JPanel {
         this.defenderScore.setText("" + defenderScore);
     }
 
-    public void setTimeLeft(int timeLeft) {
-        this.timeLeft.setText("" + timeLeft);
+    public void setTimeLeft() {
+        int secs = GamePanel.getInstance().getCurrentTime()/1000;
+        String holder = secs%60 >= 10 ? "" : "0";
+        this.timeLeft.setText("0" + secs/60 + ":" + holder + secs%60);
     }
 
 

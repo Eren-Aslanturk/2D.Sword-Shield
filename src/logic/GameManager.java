@@ -4,6 +4,7 @@ import entity.Factory;
 import entity.Spaceship;
 import entity.Tile;
 import entity.Turret;
+import gui.GamePanel;
 import gui.StatsPanel;
 import logic.factory.FactoryFactory;
 import logic.factory.ReactorFactory;
@@ -12,6 +13,7 @@ import logic.manager.*;
 import util.User;
 
 import java.awt.*;
+import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.io.Serializable;
 import gui.UnitCardPanel;
@@ -20,7 +22,7 @@ import javax.swing.*;
 
 public class GameManager extends UnitCardPanel{
     private static GameManager instance;
-
+    private static int TURN_TIME = 20;
     private static final int MAX_TURNS = 3;
     private User attacker, defender;
     private boolean currentTurn, gameOver;
@@ -168,6 +170,12 @@ public class GameManager extends UnitCardPanel{
         statsPanel.setAttackerGold(attacker.getGold());
         statsPanel.setDefenderScore(defender.getScore());
         statsPanel.setAttackerScore(attacker.getScore());
+        statsPanel.setTimeLeft();
+        if (GamePanel.getInstance().getCurrentTime()/1000 == TURN_TIME) {
+            currentTurn = currentTurn == false ? true : false;
+            GamePanel.getInstance().setCurrentTime(0);
+            return;
+        }
 
         spaceshipManager.addSpaceships(factoryManager.produceSpaceships());
         factoryManager.increase();

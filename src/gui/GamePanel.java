@@ -54,6 +54,13 @@ public class GamePanel extends JPanel {
         actionPanel.startTimer();
     }
 
+    public int getCurrentTime() {
+        return actionPanel.getCurrentTime();
+    }
+
+    public void setCurrentTime(int currentTime) {
+        actionPanel.setCurrentTime(currentTime);
+    }
 
     public static GamePanel getInstance() {
         if (instance == null)
