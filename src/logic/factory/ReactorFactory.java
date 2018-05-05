@@ -46,6 +46,7 @@ public class ReactorFactory {
         reactor.setY(y);
         reactor.setIncome(INCOME);
         reactor.setIncomeRate(INCOME_RATE);
+        reactor.setImage(image);
         return reactor;
     }
 
