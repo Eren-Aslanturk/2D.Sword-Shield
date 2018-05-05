@@ -69,38 +69,21 @@ public class TileManager extends UnitCardPanel {
     }
 
     public void removeTile(int x, int y) {
-        //defender
-        for (int i = 300; i < 500; i += TileFactory.WIDTH) {
-            for (int j = 100; j < 200; j += TileFactory.HEIGHT){
-                //match case for upper base
-                if(findTile(x,y)!=null){
-                    defenderTiles.remove(findTile(x,y));
-                    return;
+        for (int i = 0; i < attackerTiles.size();++i) {
+            if (attackerTiles.get(i).getX() == x &&
+                    attackerTiles.get(i).getY() == y)
+                {
+                    attackerTiles.remove(i);
+                    return ;
                 }
-            }
-            for (int j = 300; j < 400; j+= TileFactory.HEIGHT) {
-                //match case for lower base
-                if (findTile(x, y) != null) {
-                    defenderTiles.remove(findTile(x, y));
-                    return;
-                }
-            }
         }
-        //attacker
-        for (int i = 0; i < 200; i += TileFactory.WIDTH) {
-            for (int j = 100; j < 200; j += TileFactory.HEIGHT){
-                //match case for upper base
-                if(findTile(x,y)!=null){
-                    attackerTiles.remove(findTile(x,y));
-                    return;
-                }
-            }
-            for (int j = 300; j < 400; j+= TileFactory.HEIGHT) {
-                //match case for lower base
-                if (findTile(x, y) != null) {
-                    attackerTiles.remove(findTile(x, y));
-                    return;
-                }
+
+        for (int i = 0; i < defenderTiles.size();++i) {
+            if (defenderTiles.get(i).getX() == x &&
+                    defenderTiles.get(i).getY() == y)
+            {
+                defenderTiles.remove(i);
+                return ;
             }
         }
         System.out.println("tile is not found");
@@ -116,6 +99,19 @@ public class TileManager extends UnitCardPanel {
         }
         //not found
         return null;
+    }
+
+    public String getTileType(Tile tile) {
+        for (int i = 0; i < attackerTiles.size(); ++i)
+            if(tile.getX() == attackerTiles.get(i).getX() &&
+                    tile.getY() == attackerTiles.get(i).getY())
+                return "Attacker";
+
+        for (int i = 0; i < defenderTiles.size(); ++i)
+            if(tile.getX() == defenderTiles.get(i).getX() &&
+                    tile.getY() == defenderTiles.get(i).getY())
+                return "Defender";
+        return "None";
     }
 
     public Tile clickedTile(int x, int y) {
