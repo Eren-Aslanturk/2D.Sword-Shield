@@ -118,10 +118,6 @@ public class GameManager extends UnitCardPanel{
         return boughtTile;
     }
 
-
-    /*
-    * TODO will be implemented after iteration I
-    */
     public void buyItem(Point point, int type) {
         if (type < 0) return ;
 
@@ -190,11 +186,6 @@ public class GameManager extends UnitCardPanel{
 
             spaceshipManager.moveAll();
         }
-        statsPanel.setDefenderGold(defender.getGold());
-        statsPanel.setAttackerGold(attacker.getGold());
-        statsPanel.setDefenderScore(defender.getScore());
-        statsPanel.setAttackerScore(attacker.getScore());
-
     }
 
     public void render(Graphics g) {

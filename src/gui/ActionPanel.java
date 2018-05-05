@@ -67,6 +67,6 @@ public class ActionPanel extends JPanel {
         gameManager.render(g);
     }
     public void setStatsPanel(StatsPanel panel){
-        //gameManager.setStatsPanel(panel);
+        gameManager.setStatsPanel(panel);
     }
 }
