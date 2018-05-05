@@ -49,8 +49,8 @@ public class FactoryFactory {
 
     public static final int[] COSTS = {100, 200, 300, 400};
     private static final int[] PRODUCTION_RATES = {45, 40, 50, 60};
-    private static final int[] WIDTHS = {50, 40, 50, 25};
-    private static final int[] HEIGHTS = {50, 40, 45, 50};
+    private static final int[] WIDTHS = {50, 50, 50, 50};
+    private static final int[] HEIGHTS = {50, 50, 50, 50};
 
     // FileManager
     FileManager fileManager;

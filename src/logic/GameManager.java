@@ -123,6 +123,9 @@ public class GameManager extends UnitCardPanel{
     * TODO will be implemented after iteration I
     */
     public void buyItem(Point point, int type) {
+        if (type < 0) return ;
+
+        System.out.println(point.x + " " + point.y + " " +  type);
         if (getCurrentTurn() == "Attacker") {
             int costOfItem;
             if (type != 4)
@@ -131,7 +134,6 @@ public class GameManager extends UnitCardPanel{
                 costOfItem = ReactorFactory.COST;
 
             Tile clickedTile = tileManager.clickedTile((int)point.getX(), (int)point.getY());
-
             if (clickedTile != null && tileManager.getTileType(clickedTile).equals("Attacker")) {
                 if (getAttackerGold() >= costOfItem) {
                     int itemX = clickedTile.getX();

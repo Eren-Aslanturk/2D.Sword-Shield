@@ -102,10 +102,12 @@ public class TileManager extends UnitCardPanel {
     }
 
     public String getTileType(Tile tile) {
-        for (int i = 0; i < attackerTiles.size(); ++i)
-            if(tile.getX() == attackerTiles.get(i).getX() &&
+        for (int i = 0; i < attackerTiles.size(); ++i) {
+            System.out.println(tile.getX() + " " + tile.getY());
+            if (tile.getX() == attackerTiles.get(i).getX() &&
                     tile.getY() == attackerTiles.get(i).getY())
                 return "Attacker";
+        }
 
         for (int i = 0; i < defenderTiles.size(); ++i)
             if(tile.getX() == defenderTiles.get(i).getX() &&
@@ -115,18 +117,15 @@ public class TileManager extends UnitCardPanel {
     }
 
     public Tile clickedTile(int x, int y) {
-        int normalizedX = x - x % TileFactory.WIDTH;
-        int normalizedY = y - y % TileFactory.HEIGHT;
-
         for (Tile tile : attackerTiles) {
-            if (tile.getX() == normalizedX &&
-                    tile.getY() == normalizedY )
+            if (x >= tile.getX() && x <= tile.getX() + TileFactory.WIDTH &&
+                    y >= tile.getY() && y <= tile.getY() + TileFactory.HEIGHT)
                 return tile;
         }
 
         for (Tile tile : defenderTiles) {
-            if (tile.getX() == normalizedX &&
-                    tile.getY() == normalizedY)
+            if (x >= tile.getX() && x <= tile.getX() + TileFactory.WIDTH &&
+                    y >= tile.getY() && y <= tile.getY() + TileFactory.HEIGHT)
                 return tile;
         }
 

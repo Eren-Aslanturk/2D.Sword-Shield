@@ -40,7 +40,7 @@ public class GamePanel extends JPanel {
         utilityPanel.setBounds(200, 550, UtilityPanel.WIDTH, UtilityPanel.HEIGHT);
 
 
-        // addMouseListener(new GamePanelMouseHandler());
+        addMouseListener(new GamePanelMouseHandler());
         add(attackUnitsPanel);
         add(defenseUnitsPanel);
         add(actionPanel);
@@ -70,13 +70,15 @@ public class GamePanel extends JPanel {
     // TODO will be implemented after iteration I
     private class GamePanelMouseHandler extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
-             int mouseX = e.getX();
-             int mouseY = e.getY();
+             int mouseX = e.getX() - attackUnitsPanel.WIDTH;
+             int mouseY = e.getY() - statsPanel.HEIGHT;
+             Point clickedPoint = new Point(mouseX, mouseY);
 
-             if (gameManager.getCurrentTurn().equals("Attacker"))
-                 gameManager.buyItem(e.getPoint(), attackUnitsPanel.getSelected());
-             else
-                 gameManager.buyItem(e.getPoint(), defenseUnitsPanel.getSelected());
+             if (GameManager.getInstance().getCurrentTurn().equals("Attacker"))
+                GameManager.getInstance().buyItem(clickedPoint, attackUnitsPanel.getSelected());
+            else
+                GameManager.getInstance().buyItem(clickedPoint, defenseUnitsPanel.getSelected());
+
         }
     }
 
