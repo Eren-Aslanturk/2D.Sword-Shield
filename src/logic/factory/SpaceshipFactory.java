@@ -42,7 +42,7 @@ public class SpaceshipFactory {
 
     };
 
-    private static final int[] SPEEDS = {2, 1, 3, 4};
+    private static final int[] SPEEDS = {2, 1, 7, 4};
     private static final double[] ARMORS = {3.3, 4.5, 2.5, 1.9};
     private static final double[] HPS = {200, 323, 234, 456};
     private static final int[] WIDTHS = {50, 50, 50, 50};

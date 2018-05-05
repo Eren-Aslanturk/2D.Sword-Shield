@@ -70,7 +70,6 @@ public class GameManager extends UnitCardPanel{
         factoryManager.setSpaceshipFactory(spaceshipManager.getSpaceshipFactory());
         turretManager.setProjectileFactory(projectileManager.getProjectileFactory());
         spaceshipManager.setUsers(attacker,defender);
-        statsPanel.setUsers(attacker,defender);
     }
 
     /*
@@ -167,7 +166,10 @@ public class GameManager extends UnitCardPanel{
         this.statsPanel = panel;
     }
     public void update() {
-        statsPanel.setDefenderGold();
+        statsPanel.setDefenderGold(defender.getGold());
+        statsPanel.setAttackerGold(attacker.getGold());
+        statsPanel.setDefenderScore(defender.getScore());
+        statsPanel.setAttackerScore(attacker.getScore());
 
         spaceshipManager.addSpaceships(factoryManager.produceSpaceships());
         factoryManager.increase();
