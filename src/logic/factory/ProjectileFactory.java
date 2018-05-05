@@ -16,12 +16,12 @@ public class ProjectileFactory {
                                                 "/images/projectile/projectile3.png",
                                                 "/images/projectile/projectile4.png"};
 
-    private static final double[] SPEEDS  = {5,7,9,11.5};
+    private static final double[] SPEEDS  = {10,7,9,11.5};
     private static final double[] ARMORPENS = {2.3, 4.5, 5.6, 6.7};
     private static final double[] DAMAGES = {160, 180, 170, 200};
     private static final double[] RANGES = {145, 144, 123.25, 145.5};
-    public static final int[] WIDTHS = {25, 25, 25, 50};
-    public static final int[] HEIGHTS = {15, 15, 15, 50};
+    public static final int[] WIDTHS = {25, 25, 25, 25};
+    public static final int[] HEIGHTS = {15, 15, 15, 15};
 
     // FileManager
     FileManager fileManager;

@@ -18,15 +18,6 @@ public class FactoryManager {
         factories = new ArrayList<>();
         factoryFactory = new FactoryFactory();
 
-        // TODO FACTORY DEMO
-        // these lines are added just for the demo
-        add(2,55,105);
-
-        /*
-        insertFactory(1, 6, 4, 0);  //attacker
-        insertFactory(1, 2, 2, 1);  //defender
-        */
-
     }
     public void add(int type, int x, int y) {
         factories.add(factoryFactory.create(type,x,y));

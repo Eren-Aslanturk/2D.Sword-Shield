@@ -19,12 +19,6 @@ public class SpaceshipManager {
         spaceshipFactory = new SpaceshipFactory();
         spaceships = new ArrayList<>();
        // statsPanel = new StatsPanel();
-
-        // TODO SPACESHIP DEMO
-        // these lines are added just for the demo
-        for(int i = 0; i<spaceships.size(); i++) {
-            System.out.println((spaceships.get(i).getImage()));
-        }
     }
 
     //ship spawner

@@ -43,7 +43,7 @@ public class GameManager extends UnitCardPanel{
     private GameManager() {
         attacker = new User();
         defender = new User();
-        currentTurn = false;
+        currentTurn = true;
         gameOver = false;
         timeLeft = 0;
         turnCount = 0;
