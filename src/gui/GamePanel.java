@@ -72,7 +72,7 @@ public class GamePanel extends JPanel {
              int mouseX = e.getX();
              int mouseY = e.getY();
 
-             if (gameManager.getCurrentTurn() == "Attacker")
+             if (gameManager.getCurrentTurn().equals("Attacker"))
                  gameManager.buyItem(e.getPoint(), attackUnitsPanel.getSelected());
              else
                  gameManager.buyItem(e.getPoint(), defenseUnitsPanel.getSelected());
