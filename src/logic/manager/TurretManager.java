@@ -24,9 +24,9 @@ public class TurretManager {
 
         // TODO the following lines will be deleted after the demo
         // these lines are added just for the demo
-        add(1,310,155);
+        //add(1,310,155);
         //add(2,350,155);
-        //add(0,410,155);
+        add(0,410,155);
         add(3,435,135);
     }
 

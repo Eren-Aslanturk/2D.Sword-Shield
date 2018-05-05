@@ -136,7 +136,7 @@ public class GameManager extends UnitCardPanel{
                 if (getAttackerGold() >= costOfItem) {
                     int itemX = clickedTile.getX();
                     int itemY = clickedTile.getY();
-                    tileManager.removeTile(itemX, itemY);
+                   // tileManager.removeTile(itemX, itemY);
                     attacker.setGold(attacker.getGold() - costOfItem);
                     if (type != 4)
                         factoryManager.add(type, itemX, itemY);
@@ -154,7 +154,7 @@ public class GameManager extends UnitCardPanel{
                 if (getDefenderGold() >= costOfItem) {
                     int itemX = clickedTile.getX();
                     int itemY = clickedTile.getY();
-                    tileManager.removeTile(itemX, itemY);
+                    //tileManager.removeTile(itemX, itemY);
                     defender.setGold(defender.getGold() - costOfItem);
                     turretManager.add(type, itemX, itemY);
                 }
