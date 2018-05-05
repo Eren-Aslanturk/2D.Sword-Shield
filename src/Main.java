@@ -17,6 +17,7 @@ public class Main {
             // If Nimbus is not available, you can set the GUI to another look and feel.
         }
 
+        
 
         GUIManager guiManager = GUIManager.getInstance();
         GUIManager.getInstance().showMenuPanel();
