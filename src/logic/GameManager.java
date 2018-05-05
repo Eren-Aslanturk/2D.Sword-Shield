@@ -171,6 +171,7 @@ public class GameManager extends UnitCardPanel{
 
         spaceshipManager.addSpaceships(factoryManager.produceSpaceships());
         factoryManager.increase();
+        reactorManager.increase();
         turretManager.increase();
         spaceships = spaceshipManager.getSpaceships();
         spaceshipManager.removeSpaceships();
@@ -186,6 +187,8 @@ public class GameManager extends UnitCardPanel{
 
             spaceshipManager.moveAll();
         }
+
+
     }
 
     public void render(Graphics g) {

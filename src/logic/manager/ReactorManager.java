@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ReactorManager {
-
+    private int j = 0;
     private ArrayList<Reactor> reactors;
     private ReactorFactory reactorFactory;
 
@@ -23,8 +23,8 @@ public class ReactorManager {
     public int gatherGold() {
         int gold = 0;
         for(int i = 0; i < reactors.size() ; i++ ) {
-            int j = reactors.get(i).getIncomeRate();
-            for(; j > 0 ; j-- ) {
+            System.out.println(j);
+            if(j%reactors.get(i).getIncomeRate()== 0) {
                 gold = gold + reactors.get(i).getIncome();
             }
         }
@@ -34,5 +34,8 @@ public class ReactorManager {
     public void render(Graphics g) {
         for (Reactor reactor: reactors)
             g.drawImage(reactor.getImage(), reactor.getX(), reactor.getY(), null);
+    }
+    public void increase(){
+        j++;
     }
 }

@@ -22,7 +22,7 @@ public class ReactorFactory {
             "</pre></html>";
 
 
-    private static final int INCOME_RATE = 5;
+    private static final int INCOME_RATE = 40;
     private static final int INCOME = 5;
     private static final int WIDTH = 50;
     private static final int HEIGHT = 50;
